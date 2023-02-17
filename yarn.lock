@@ -803,10 +803,10 @@
     remark-gfm "^1.0.0"
     tslib "^2.3.1"
 
-"@pankod/refine-kbar@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@pankod/refine-kbar/-/refine-kbar-0.8.0.tgz#b315dcd0556519f5ce988d220a158c3fa5e309b6"
-  integrity sha512-TMLgiysGsKxy3h0MZ+yQzvYkfOOm6tsvgeInp2rB5J9ARt+Ik8dutqyDUtJGmR0TZDbec5lBFrSEKOVQ2yY0tg==
+"@pankod/refine-kbar@0.10.2":
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/@pankod/refine-kbar/-/refine-kbar-0.10.2.tgz#20478e2bb2b6c53f0fb176303c400b8a7e285522"
+  integrity sha512-P2KsVlN3AAcC2CwAe8GCt+THpogJo4iyMU5uMxU7YRqJYcW6zyXL46yD4Ui4BfnTERHTSfs4mBNoANQBQx6LqA==
   dependencies:
     kbar "^0.1.0-beta.36"
 

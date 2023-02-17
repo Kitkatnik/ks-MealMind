@@ -16,11 +16,12 @@ import { dataProvider } from "@pankod/refine-supabase";
 import { RefineKbarProvider } from "@pankod/refine-kbar";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
-import { AuthPage } from "../src/components/pages/auth";
 import { authProvider } from "src/authProvider";
 import { supabaseClient } from "src/utility";
 
 import { ColorModeContextProvider } from "@contexts";
+
+import { AuthPage } from "@components/pages/auth";
 import { Title, Sider, Layout, Header } from "@components/layout";
 import { OffLayoutArea } from "@components/offLayoutArea";
 
@@ -32,23 +33,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 			<RefineSnackbarProvider>
 				<RefineKbarProvider>
 					<Refine
-						routerProvider={{
-							...routerProvider,
-							routes: [
-								{
-									path: "/register",
-									element: (<AuthPage type="register" />),
-								},
-								{
-									path: "/forgot-password",
-									element: (<AuthPage type="forgotPassword" />),
-								},
-								{
-									path: "/update-password",
-									element: <AuthPage type="updatePassword" />,
-								},
-							],
-						}}
+						routerProvider={routerProvider}
             LoginPage={() => (<AuthPage type="login"/>)}
             authProvider={authProvider}
 						dataProvider={dataProvider(supabaseClient)}
