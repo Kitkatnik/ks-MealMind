@@ -64,10 +64,16 @@ export const authProvider: AuthProvider = {
 			});
 		}
 	},
-	register: async ({ email, password }) => {
+	register: async ({ email, password, full_name, avatar_url }) => {
 		const { data, error } = await supabaseClient.auth.signUp({
 			email,
 			password,
+			options: {
+				data: {
+					full_name,
+					avatar_url
+				}
+			}
 		});
 
 		if (error) {
