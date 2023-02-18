@@ -19,7 +19,7 @@ export const authProvider: AuthProvider = {
 				maxAge: 30 * 24 * 60 * 60,
 				path: "/",
 			});
-			return Promise.resolve();
+			return Promise.resolve("/dashboard");
 		}
 
 		// for third-party login
@@ -67,13 +67,7 @@ export const authProvider: AuthProvider = {
 	register: async ({ email, password, full_name, avatar_url }) => {
 		const { data, error } = await supabaseClient.auth.signUp({
 			email,
-			password,
-			options: {
-				data: {
-					full_name,
-					avatar_url
-				}
-			}
+			password
 		});
 
 		if (error) {
@@ -81,7 +75,7 @@ export const authProvider: AuthProvider = {
 		}
 
 		if (data) {
-			return Promise.resolve();
+			return Promise.resolve("/dashboard/user-info");
 		}
 	},
 	forgotPassword: async ({ email }) => {
@@ -97,7 +91,7 @@ export const authProvider: AuthProvider = {
 		}
 
 		if (data) {
-			const { open, close } = useNotification();
+			const { open } = useNotification();
 
 			// open notification
 			open?.({

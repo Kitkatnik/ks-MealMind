@@ -34,8 +34,8 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 				<RefineKbarProvider>
 					<Refine
 						routerProvider={routerProvider}
-            LoginPage={() => (<AuthPage type="login"/>)}
-            authProvider={authProvider}
+						LoginPage={() => (<AuthPage type="login"/>)}
+						authProvider={authProvider}
 						dataProvider={dataProvider(supabaseClient)}
 						notificationProvider={notificationProvider}
 						ReadyPage={ReadyPage}
@@ -55,10 +55,10 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 						Layout={Layout}
 						Header={Header}
 						OffLayoutArea={OffLayoutArea}
-            options={{
-              syncWithLocation: true,
-              warnWhenUnsavedChanges: true,
-            }}
+						options={{
+							syncWithLocation: true,
+							warnWhenUnsavedChanges: true,
+						}}
 					>
 						<Component {...pageProps} />
 					</Refine>
