@@ -3,7 +3,6 @@ import { AppProps } from "next/app";
 
 import { Refine } from "@pankod/refine-core";
 import {
-	// AuthPage,
 	notificationProvider,
 	RefineSnackbarProvider,
 	CssBaseline,
@@ -42,7 +41,23 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 						catchAll={<ErrorComponent />}
 						resources={[
 							{
-								name: "posts",
+								name: "profiles",
+								list: MuiInferencer,
+								edit: MuiInferencer,
+								show: MuiInferencer,
+								create: MuiInferencer,
+								canDelete: true,
+							},
+							{
+								name: "foods",
+								list: MuiInferencer,
+								edit: MuiInferencer,
+								show: MuiInferencer,
+								create: MuiInferencer,
+								canDelete: true,
+							},
+							{
+								name: "meal_plans",
 								list: MuiInferencer,
 								edit: MuiInferencer,
 								show: MuiInferencer,

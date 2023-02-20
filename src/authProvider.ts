@@ -1,4 +1,5 @@
-import { AuthProvider, useNotification } from "@pankod/refine-core";
+import { AuthProvider } from "@pankod/refine-core";
+
 import nookies from "nookies";
 
 import { supabaseClient } from "./utility";
@@ -19,7 +20,7 @@ export const authProvider: AuthProvider = {
 				maxAge: 30 * 24 * 60 * 60,
 				path: "/",
 			});
-			return Promise.resolve("/dashboard");
+			return Promise.resolve();
 		}
 
 		// for third-party login
@@ -55,16 +56,17 @@ export const authProvider: AuthProvider = {
 		}
 	},
 	getUserIdentity: async () => {
-		const { data } = await supabaseClient.auth.getUser();
+		const { data: { user }  } = await supabaseClient.auth.getUser();
 
-		if (data?.user) {
+		if (user) {
 			return Promise.resolve({
-				...data.user,
-				name: data.user.email,
+				...user,
+				name: user.email,
 			});
 		}
+		return Promise.reject()
 	},
-	register: async ({ email, password, full_name, avatar_url }) => {
+	register: async ({ email, password }) => {
 		const { data, error } = await supabaseClient.auth.signUp({
 			email,
 			password
@@ -75,7 +77,7 @@ export const authProvider: AuthProvider = {
 		}
 
 		if (data) {
-			return Promise.resolve("/dashboard/user-info");
+			return Promise.resolve("/registration-success");
 		}
 	},
 	forgotPassword: async ({ email }) => {
@@ -91,16 +93,6 @@ export const authProvider: AuthProvider = {
 		}
 
 		if (data) {
-			const { open } = useNotification();
-
-			// open notification
-			open?.({
-				type: "success",
-				message: "Success",
-				description:
-					"Please check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder",
-			});
-
 			return Promise.resolve();
 		}
 	},

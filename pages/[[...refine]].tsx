@@ -1,55 +1,59 @@
 import { GetServerSideProps } from "next";
 import {
-  NextRouteComponent, 
-  handleRefineParams, 
-  checkAuthentication
+	NextRouteComponent,
+	handleRefineParams,
+	checkAuthentication,
 } from "@pankod/refine-nextjs-router";
 import { dataProvider } from "@pankod/refine-supabase";
 
 import { authProvider } from "src/authProvider";
 import { supabaseClient } from "src/utility";
 
-export const getServerSideProps: GetServerSideProps<
-  { initialData?: unknown }
-> = async (context) => {
-  const { resource, action, id } = handleRefineParams(context.params?.refine);
+export const getServerSideProps: GetServerSideProps<{
+	initialData?: unknown;
+}> = async (context) => {
+	const { resource, action, id } = handleRefineParams(context.params?.refine);
 
-  const { isAuthenticated, ...props } =
-    await checkAuthentication(authProvider, context);
+	const { isAuthenticated, ...props } = await checkAuthentication(
+		authProvider,
+		context
+	);
 
-    if (!isAuthenticated) {
-      return props;
-    }
-  
-      try {
-          if (resource && action === "show" && id) {
-              const data = await dataProvider(supabaseClient).getOne({
-                  resource: resource.slice(resource.lastIndexOf("/") + 1),
-                  id,
-              });
-  
-              return {
-                  props: {
-                      initialData: data,
-                  },
-              };
-          } else if (resource && !action && !id) {
-              const data = await dataProvider(supabaseClient).getList({
-                  resource: resource.slice(resource.lastIndexOf("/") + 1),
-              });
-  
-              return {
-                  props: {
-                      initialData: data,
-                  },
-              };
-          }
+	if (!isAuthenticated) {
+		return props;
+	}
+
+	try {
+        if (resource && action === "show" && id) {
+          const data = await dataProvider(supabaseClient).getOne({
+            resource: resource.slice(resource.lastIndexOf("/") + 1),
+            id,
+          });
+          console.log("Data in getServerSideProps", data);
+          return {
+            props: {
+              initialData: data,
+            },
+          };
+        } else if (resource && !action && !id) {
+          const data = await dataProvider(supabaseClient).getList({
+            resource: resource.slice(resource.lastIndexOf("/") + 1),
+          });
+          console.log("Data in getServerSideProps", data);
+          return {
+            props: {
+              initialData: data,
+            },
+          };
+        }
       } catch (error) {
-          return { props: {} };
+        console.error(error);
+        return { props: {} };
       }
-  
+    
+      console.log("Empty props in getServerSideProps");
       return {
-          props: {},
+        props: {},
       };
 };
 
