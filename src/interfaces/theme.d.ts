@@ -1,10 +1,22 @@
 import "@pankod/refine-mui";
 
 export interface CustomTheme {
-  // Add custom variables here like below:
-  // status: {
-  //   danger: string;
-  // };
+  timeLine: {
+    color: {
+        pending: string;
+        ready: string;
+        delivered: string;
+        cancelled: string;
+        onTheWay: string;
+    };
+    dotColor: {
+        pending: string;
+        ready: string;
+        delivered: string;
+        cancelled: string;
+        onTheWay: string;
+    };
+};
 }
 
 declare module "@pankod/refine-mui" {
