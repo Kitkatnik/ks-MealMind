@@ -10,6 +10,15 @@ import {
 	ReadyPage,
 	ErrorComponent,
 } from "@pankod/refine-mui";
+import {
+    AddShoppingCartOutlined,
+    StarBorderOutlined,
+    CategoryOutlined,
+    StoreOutlined,
+    LocalPizzaOutlined,
+    PeopleOutlineOutlined,
+} from "@mui/icons-material";
+
 import routerProvider from "@pankod/refine-nextjs-router";
 import { dataProvider } from "@pankod/refine-supabase";
 import { RefineKbarProvider } from "@pankod/refine-kbar";
@@ -17,6 +26,10 @@ import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 import { authProvider } from "src/authProvider";
 import { supabaseClient } from "src/utility";
+
+import { FoodList } from "./foods/list";
+import { CategoryList } from "./categories/list";
+
 
 import { ColorModeContextProvider } from "@contexts";
 
@@ -50,11 +63,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 							},
 							{
 								name: "foods",
-								list: MuiInferencer,
-								edit: MuiInferencer,
-								show: MuiInferencer,
-								create: MuiInferencer,
-								canDelete: true,
+								list: FoodList,
 							},
 							{
 								name: "meal_plans",
@@ -63,6 +72,11 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 								show: MuiInferencer,
 								create: MuiInferencer,
 								canDelete: true,
+							},
+							{
+								name: "categories",
+								list: CategoryList,
+                                icon: <CategoryOutlined />,
 							},
 						]}
 						Title={Title}

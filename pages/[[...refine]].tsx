@@ -12,6 +12,7 @@ import { supabaseClient } from "src/utility";
 export const getServerSideProps: GetServerSideProps<{
 	initialData?: unknown;
 }> = async (context) => {
+
 	const { resource, action, id } = handleRefineParams(context.params?.refine);
 
 	const { isAuthenticated, ...props } = await checkAuthentication(
@@ -29,17 +30,15 @@ export const getServerSideProps: GetServerSideProps<{
             resource: resource.slice(resource.lastIndexOf("/") + 1),
             id,
           });
-          console.log("Data in getServerSideProps", data);
           return {
             props: {
-              initialData: data,
+              // initialData: data,
             },
           };
         } else if (resource && !action && !id) {
           const data = await dataProvider(supabaseClient).getList({
             resource: resource.slice(resource.lastIndexOf("/") + 1),
           });
-          console.log("Data in getServerSideProps", data);
           return {
             props: {
               initialData: data,
@@ -51,7 +50,6 @@ export const getServerSideProps: GetServerSideProps<{
         return { props: {} };
       }
     
-      console.log("Empty props in getServerSideProps");
       return {
         props: {},
       };

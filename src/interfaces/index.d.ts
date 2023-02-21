@@ -3,7 +3,7 @@ export interface IUser {
     name: string;
     email: string;
     avatar: IFile[];
-    createdAt: string;
+    created_at: string;
 }
 
 export interface IFile {
@@ -19,13 +19,15 @@ export interface IFile {
 export interface IFoods {
     id: number;
     user: IUser;
-    createdAt: string;
+    created_at: string;
     food_name: string;
     rating: number;
     tags: string[];
     location: string;
-    purchaseAt: string;
+    purchase_at: string;
     notes: string; 
+    food_image: string;
+    category: ICategory;
 }
 
 export interface IMealPlans {
@@ -41,9 +43,8 @@ export interface IMealPlans {
     mealFood: string[];
 }
 
-export interface IMealPlanFilterVariables {
-    q: string;
-    date: boolean;
-    mealFood: string;
-    eaten: boolean | string;
+export interface ICategory {
+    id: number;
+    title: string;
+    is_active: boolean;
 }
