@@ -1,18 +1,21 @@
-import React from "react";
-
-import { 
-    HttpError 
-} from "@pankod/refine-core";
-
+import React, { useState } from "react";
 import {
 	Controller,
 	UseModalFormReturnType,
+	useForm,
 } from "@pankod/refine-react-hook-form";
+import { useList, HttpError, useGetIdentity, useSelect } from "@pankod/refine-core";
 
 import {
+	Form,
+	Space,
+	Upload,
+	getValueFromEvent,
+	RcFile,
+} from "@pankod/refine-antd";
+import {
 	Drawer,
-	Input,
-	TextField,
+	FormControlLabel,
 	Avatar,
 	Typography,
 	FormLabel,
@@ -20,21 +23,25 @@ import {
 	Box,
 	IconButton,
 	FormControl,
-	useAutocomplete,
+	Autocomplete,
 	OutlinedInput,
 	FormHelperText,
-	Autocomplete,
 	Edit,
+	useAutocomplete,
+	TextField,
 } from "@pankod/refine-mui";
-import CloseIcon from "@mui/icons-material/Close";
+import { CloseOutlined } from "@mui/icons-material";
 
+import { StyledRating, IconContainer, customIcons } from "../ratings";
 import { ICategory, IFoods } from "../../interfaces";
+import { supabaseClient, normalizeFile } from "../../utility";
 
 export const EditFood: React.FC<
 	UseModalFormReturnType<IFoods, HttpError, IFoods>
 > = ({
 	watch,
 	setValue,
+	getValues,
 	register,
 	formState: { errors },
 	control,
@@ -42,52 +49,78 @@ export const EditFood: React.FC<
 	handleSubmit,
 	modal: { visible, close },
 	saveButtonProps,
-	getValues,
 }) => {
-	const foodsData = queryResult?.data?.data;
 
-	const { autocompleteProps } = useAutocomplete({
+	const { formProps } = useForm<IFoods>()
+
+	const foodsData = queryResult?.data?.data;
+	const { data: foodsList } = useList<IFoods, HttpError>({
+		resource: "foods",
+	});
+
+	const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+        defaultValue: foodsData?.category_id,
+    });
+
+    const handleRefresh = () => {
+        queryResult?.refetch();
+    };
+
+	const { data: identity } = useGetIdentity<{ id: number; fullName: string }>();
+	const userId = foodsList?.data[0].added_by ?? 0;
+	const userIdAuth = identity?.id ?? 0;
+
+	const { autocompleteProps } = useAutocomplete<ICategory>({
 		resource: "categories",
-		defaultValue: foodsData?.category_id,
+		defaultValue: foodsData?.category_id.id,
 	});
 
 	const imageInput = watch("food_image");
+	const [imagePreview, setImagePreview] = useState("");
 
-	const onChangeHandler = async (
-		event: React.ChangeEvent<HTMLInputElement>
-	) => {
-		const formData = new FormData();
-
-		const target = event.target;
-		const file: File = (target.files as FileList)[0];
-
-		formData.append("file", file);
-
-		// const res = await axios.post<{ url: string }>(
-		//     `${apiUrl}/media/upload`,
-		//     formData,
-		//     {
-		//         withCredentials: false,
-		//         headers: {
-		//             "Access-Control-Allow-Origin": "*",
-		//         },
-		//     },
-		// );
-
-		const { name, size, type, lastModified } = file;
-
-		// eslint-disable-next-line
-		// const imagePaylod: any = [
-		//     {
-		//         name,
-		//         size,
-		//         type,
-		//         lastModified,
-		//         url: res.data.url,
-		//     },
-		// ];
-
-		// setValue("images", imagePaylod, { shouldValidate: true });
+	const ImageWithFallBack = () => {
+		// console.log("image input: ", imageInput)
+		// console.log("imagePreview: ", imagePreview)
+		// console.log(foodsList?.data)
+		if (imagePreview.length !== 0 && imagePreview !== undefined) {
+			const ImageContainer = () => {
+				return (
+					<div
+						style={{
+							flex: 1,
+							justifyContent: "center",
+							alignItems: "center",
+						}}
+					>
+						<Avatar
+							style={{
+								width: 200,
+								height: 200,
+								borderRadius: 200 / 2,
+							}}
+							src={imagePreview}
+							alt="Store Location"
+						/>
+					</div>
+				);
+			};
+			return <ImageContainer />;
+		} else {
+			console.log("other");
+			return (
+				<Avatar
+					style={{
+						width: "100%",
+						height: "100%",
+						maxWidth: "256px",
+						maxHeight: "256px",
+					}}
+					src="/upload_food_default.png"
+					alt="Store Location"
+				/>
+			);
+		}
 	};
 
 	return (
@@ -104,9 +137,13 @@ export const EditFood: React.FC<
 					avatar: (
 						<IconButton
 							onClick={() => close()}
-							sx={{ width: "30px", height: "30px", mb: "5px" }}
+							sx={{
+								width: "30px",
+								height: "30px",
+								mb: "5px",
+							}}
 						>
-							<CloseIcon />
+							<CloseOutlined />
 						</IconButton>
 					),
 					action: null,
@@ -115,9 +152,9 @@ export const EditFood: React.FC<
 			>
 				<Stack>
 					<Box
+						paddingX="50px"
 						justifyContent="center"
 						alignItems="center"
-						marginBottom="50px"
 						sx={{
 							paddingX: {
 								xs: 1,
@@ -125,66 +162,70 @@ export const EditFood: React.FC<
 							},
 						}}
 					>
-						<form onSubmit={handleSubmit(onFinish)}>
+						<form {...formProps} onSubmit={handleSubmit(onFinish)}>
 							<FormControl sx={{ width: "100%" }}>
 								<FormLabel>{"Image"}</FormLabel>
-								<Stack
-									display="flex"
-									alignItems="center"
-									border="1px dashed  "
-									borderColor="primary.main"
-									borderRadius="5px"
-									padding="10px"
-									marginTop="5px"
+								<Form.Item
+									name="images"
+									valuePropName="fileList"
+									getValueFromEvent={getValueFromEvent}
+									normalize={normalizeFile}
+									noStyle
 								>
-									<label htmlFor="images-input">
-										<Input
-											id="images-input"
-											type="file"
-											sx={{
-												display: "none",
-											}}
-											onChange={onChangeHandler}
-										/>
-										<input
-											id="file"
-											{...register("food_image")}
-											type="hidden"
-										/>
-										<Avatar
-											sx={{
-												cursor: "pointer",
-												width: {
-													xs: 100,
-													md: 180,
-												},
-												height: {
-													xs: 100,
-													md: 180,
-												},
-											}}
-											src={imageInput}
-											alt="Food Image"
-										/>
-									</label>
-									<Typography
-										variant="body2"
-										sx={{
-											fontWeight: 800,
-											marginTop: "8px",
+									<Upload.Dragger
+										name="file"
+										listType="picture"
+										maxCount={1}
+										customRequest={async ({
+											file,
+											onError,
+											onSuccess,
+										}) => {
+											const rcFile = file as RcFile;
+											const fileUrl = `${userId}/${rcFile.name}`;
+
+											const { error } = await supabaseClient.storage
+												.from("foods")
+												.upload(fileUrl, file, {
+													cacheControl: "3600",
+													upsert: true,
+												});
+
+											if (error) {
+												return onError?.(error);
+											}
+											const { data, error: urlError } =
+												await supabaseClient.storage
+													.from("foods")
+													.getPublicUrl(fileUrl);
+
+											if (urlError) {
+												return onError?.(urlError);
+											}
+
+											onSuccess?.(
+												{ url: data?.publicUrl },
+												new XMLHttpRequest(),
+											);
 										}}
 									>
-										{"Add Food Picture"}
-									</Typography>
-									<Typography style={{ fontSize: "12px" }}>
-										{"Must be 1080x1080 px"}
-									</Typography>
-								</Stack>
-								{errors.food_image && (
-									<FormHelperText error>
-										{errors.food_image.message}
-									</FormHelperText>
-								)}
+										<Space direction="vertical" size={2}>
+											<ImageWithFallBack />
+											<Typography
+												style={{
+													fontWeight: 800,
+													fontSize: "16px",
+													marginTop: "8px",
+												}}
+											>
+												{"Add product picture"}
+											</Typography>
+											<Typography style={{ fontSize: "12px" }}>
+												{"Must be 1080x1080 px"}
+											</Typography>
+										</Space>
+									</Upload.Dragger>
+								</Form.Item>
 							</FormControl>
 							<Stack gap="10px" marginTop="10px">
 								<FormControl>
@@ -192,7 +233,7 @@ export const EditFood: React.FC<
 									<OutlinedInput
 										id="name"
 										{...register("food_name", {
-											required: "This field is required",
+											required: "This field is required.",
 										})}
 										style={{ height: "40px" }}
 									/>
@@ -202,37 +243,31 @@ export const EditFood: React.FC<
 										</FormHelperText>
 									)}
 								</FormControl>
-                                <FormControl sx={{ marginTop: "10px" }}>
+								<FormControl>
 									<Controller
 										control={control}
 										name="category_id"
 										rules={{
-											required: "This field is required",
+											required: "This field is required.",
 										}}
-										// eslint-disable-next-line
-										defaultValue={null as any}
 										render={({ field }) => (
 											<Autocomplete
 												disablePortal
 												{...autocompleteProps}
 												{...field}
 												onChange={(_, value) => {
-													field.onChange(value);
+													field.onChange(value?.id);
 												}}
 												getOptionLabel={(item) => {
-													return item.title
-														? item.title
-														: autocompleteProps?.options?.find(
-																(p) => p.id.toString() === item.toString()
-														  )?.title ?? "";
+													return item.title ? item.title : "";
 												}}
 												isOptionEqualToValue={(option, value) =>
-													value === undefined ||
-													option.id.toString() === value.toString()
+													value === undefined || option.id === value.id
 												}
 												renderInput={(params) => (
 													<TextField
 														{...params}
+														margin="dense"
 														label="Category"
 														variant="outlined"
 														error={!!errors.category_id?.message}
@@ -242,20 +277,24 @@ export const EditFood: React.FC<
 											/>
 										)}
 									/>
-									{errors.tags && (
-										<FormHelperText error>{errors.tags.message}</FormHelperText>
+									{errors.category_id && (
+										<FormHelperText error>
+											{errors.category_id.message}
+										</FormHelperText>
 									)}
 								</FormControl>
 								<FormControl>
 									<FormLabel required>{"Rating"}</FormLabel>
-									<OutlinedInput
-										id="rating"
-										{...register("rating", {
-											required: "This field is required",
-											valueAsNumber: true,
-										})}
-										style={{ height: "40px" }}
-										inputProps={{ inputMode: "numeric", pattern: "[1-5]*" }}
+									<StyledRating
+										{...register("rating")}
+										value={getValues("rating")}
+										onChange={(event) => {
+											setValue("rating", Number(event.target.value));
+										}}
+										name="highlight-selected-only"
+										IconContainerComponent={IconContainer}
+										getLabelText={(value: number) => customIcons[value].label}
+										highlightSelectedOnly
 									/>
 									{errors.rating && (
 										<FormHelperText error>
@@ -303,6 +342,18 @@ export const EditFood: React.FC<
 											{errors.notes.message}
 										</FormHelperText>
 									)}
+								</FormControl>
+								<FormControl>
+									<input
+										type="hidden"
+										{...register("added_by")}
+										defaultValue={userId}
+									/>
+									<input
+										type="hidden"
+										{...register("added_by_auth")}
+										defaultValue={userIdAuth}
+									/>
 								</FormControl>
 							</Stack>
 						</form>

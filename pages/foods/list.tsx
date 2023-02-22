@@ -50,6 +50,7 @@ export const FoodList: React.FC<IResourceComponentsProps> = () => {
         modal: { show: showEditDrawer },
     } = editDrawerFormProps;
 
+    // fetches the food items for the current page
     const foods: IFoods[] = tableQueryResult.data?.data || [];
 
     return (
@@ -85,7 +86,7 @@ export const FoodList: React.FC<IResourceComponentsProps> = () => {
                                 Add Food Item
                             </CreateButton>
                         </Stack>
-                        <Grid container>
+                        <Grid container> 
                             {foods.length > 0 ? (
                                 foods.map((food: IFoods) => (
                                     <Grid
@@ -122,7 +123,7 @@ export const FoodList: React.FC<IResourceComponentsProps> = () => {
                             shape="rounded"
                             sx={{
                                 display: "flex",
-                                justifyContent: "end",
+                                justifyContent: "start",
                                 paddingY: "20px",
                             }}
                             onChange={(

@@ -20,7 +20,7 @@ export const CategoryFilter: React.FC<FoodItemProps> = ({
 }) => {
 
     const [filterCategories, setFilterCategories] = useState<string[]>(
-        getDefaultFilter("category.id", filters, "in") ?? [],
+        getDefaultFilter("category_id", filters, "in") ?? [],
     );
 
     const { data: categories, isLoading } = useList<ICategory>({
@@ -30,7 +30,7 @@ export const CategoryFilter: React.FC<FoodItemProps> = ({
     useEffect(() => {
         setFilters?.([
             {
-                field: "category.id",
+                field: "category_id",
                 operator: "in",
                 value:
                     filterCategories.length > 0 ? filterCategories : undefined,

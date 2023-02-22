@@ -35,6 +35,7 @@ import {
     DateField,
     NumberField,
     GridActionsCellItem,
+    CreateButton
 } from "@pankod/refine-mui";
 
 import {
@@ -44,7 +45,9 @@ import {
 } from "@mui/icons-material";
 
 import { ICategory, IFoods } from "../../src/interfaces";
-import { EditFood } from "../../src/components/food";
+
+import { CreateFood, EditFood } from "../../src/components/food";
+import { StyledRating, IconContainer, customIcons,  } from '../../src/components/ratings'
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const {
@@ -79,47 +82,6 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     );
                 },
             },
-            {
-                id: "is_active",
-                header: "Category Active",
-                accessorKey: "is_active",
-                cell: function render({ getValue }) {
-                    return <BooleanField value={getValue()} />;
-                },
-            },
-            {
-                id: "actions",
-                header: "Actions",
-                accessorKey: "id",
-                cell: function render({ getValue }) {
-                    return (
-                        <Stack direction="row">
-                            {id ? (
-                                <>
-                                    <EditButton
-                                        onClick={() => {
-                                            handleEditButtonClick(
-                                                getValue() as string,
-                                            );
-                                        }}
-                                    >
-                                        Edit
-                                    </EditButton>
-                                    <div>Cancel</div>
-                                </>
-                            ) : (
-                                <IconButton
-                                    onClick={() => {
-                                        setId(getValue() as string);
-                                    }}
-                                >
-                                    <Edit fontSize="small" />
-                                </IconButton>
-                            )}
-                        </Stack>
-                    );
-                },
-            },
         ],
         [],
     );
@@ -146,68 +108,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
             <CategoryFoodsTable record={row.original} />
         ),
         [],
-    );
-
-    const handleEditButtonClick = (editId: string) => {
-        setId(editId);
-    };
-
-    const renderEditRow = useCallback((row: Row<ICategory>) => {
-        const { id, title, is_active } = row.original;
-
-        return (
-            <TableRow key={`edit-${id}-inputs`}>
-                <TableCell
-                    sx={{
-                        flex: "1",
-                    }}
-                >
-                    <Stack
-                        direction="row"
-                        spacing={3}
-                        alignContent="center"
-                        alignItems="center"
-                    >
-                        <IconButton onClick={() => row.toggleExpanded()}>
-                            {row.getIsExpanded() ? (
-                                <RemoveCircleOutline fontSize="small" />
-                            ) : (
-                                <AddCircleOutline fontSize="small" />
-                            )}
-                        </IconButton>
-
-                        <TextField
-                            fullWidth
-                            id="title"
-                            type="text"
-                            size="small"
-                            defaultValue={title}
-                            {...register("title", {
-                                required: "This field is required",
-                            })}
-                        />
-                    </Stack>
-                </TableCell>
-                <TableCell>
-                    <Checkbox
-                        id="is_active"
-                        defaultChecked={is_active}
-                        {...register("is_active")}
-                    />
-                </TableCell>
-                <TableCell
-                    sx={{
-                        maxWidth: "150px",
-                    }}
-                >
-                    <SaveButton type="submit">{"Save"}</SaveButton>
-                    <Button onClick={() => setId(undefined)}>
-                        {"Cancel"}
-                    </Button>
-                </TableCell>
-            </TableRow>
-        );
-    }, []);
+    ); 
 
     return (
         <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
@@ -238,7 +139,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                                     <React.Fragment key={row.id}>
                                         {id ===
                                         (row.original as ICategory).id ? (
-                                            renderEditRow(row)
+                                            null
                                         ) : (
                                             <TableRow>
                                                 {row
@@ -315,18 +216,24 @@ const CategoryFoodsTable: React.FC<{ record: ICategory }> = ({ record }) => {
         initialPageSize: 5,
         permanentFilter: [
             {
-                field: "category.id",
+                field: "category_id",
                 operator: "eq",
                 value: record.id,
+            },
+        ],
+        permanentSorter: [
+            {
+                field: "food_name",
+                order: "asc",
             },
         ],
         syncWithLocation: false,
     });
 
-    const columns = React.useMemo<GridColumns<IFoods>>(
+    const columns = React.useMemo<GridColumns<IFoods>>( 
         () => [
             {
-                field: "image",
+                field: "food_image",
                 renderHeader: function render() {
                     return <></>;
                 },
@@ -344,42 +251,50 @@ const CategoryFoodsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                     );
                 },
                 flex: 1,
-                minWidth: 100,
+                minWidth: 80,
             },
             {
-                field: "name",
+                field: "food_name",
                 headerName: "Name",
                 flex: 1,
                 minWidth: 180,
             },
             {
                 field: "rating",
-                headerName: "Price",
-                renderCell: function render({ value }) {
+                headerName: "Rating",
+                renderCell: function render({ row }) {
                     return (
-                        <NumberField
-                            options={{
-                                currency: "USD",
-                                style: "currency",
-                                notation: "compact",
-                            }}
-                            value={value / 100}
+                        <StyledRating
+                            name="highlight-selected-only"
+                            defaultValue={row.rating}
+                            IconContainerComponent={IconContainer}
+                            getLabelText={(value: number) => customIcons[value].label}
+                            highlightSelectedOnly
+                            readOnly
                         />
                     );
                 },
                 flex: 1,
-                minWidth: 100,
+                minWidth: 180,
             },
             {
-                field: "createdAt",
-                headerName: "Created At",
-                renderCell: function render({ row }) {
-                    return <DateField value={row.created_at} format="LLL" />;
-                },
+                field: "location",
+                headerName: "Eating Location",
                 flex: 1,
+                minWidth: 180,
+            },
+            {
+                field: "purchase_at",
+                headerName: "Purchase Location",
+                flex: 1,
+                minWidth: 180,
+            },
+            {
+                field: "notes",
+                headerName: "Notes",
+                flex: 2,
                 minWidth: 200,
             },
-
             {
                 field: "actions",
                 headerName: "Actions",
@@ -401,6 +316,35 @@ const CategoryFoodsTable: React.FC<{ record: ICategory }> = ({ record }) => {
         ],
         [],
     );
+
+    const CustomNoRowsOverlay = () => {
+        console.log("HERE")
+        return (
+            <Stack height="100%" alignItems="center" justifyContent="center">
+                <Typography variant="h5">
+                    No food items found.
+                </Typography>
+                <CreateButton
+                    onClick={() => showCreateDrawer()}
+                    sx={{ margin: "10px", zIndex: 5 }}
+                >
+                    Add Food Item
+                </CreateButton>
+            </Stack>
+        )
+    }
+
+    const createDrawerFormProps = useModalForm<IFoods, HttpError, IFoods>({
+        refineCoreProps: { 
+            action: "create",
+            resource: "foods",
+            redirect: false,
+        },
+    });
+    
+    const {
+        modal: { show: showCreateDrawer },
+    } = createDrawerFormProps;
 
     const editDrawerFormProps = useModalForm<IFoods, HttpError, IFoods>({
         refineCoreProps: {
@@ -427,8 +371,12 @@ const CategoryFoodsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 autoHeight
                 density="comfortable"
                 rowsPerPageOptions={[5, 10, 25, 50, 100]}
+                components={{
+                    NoRowsOverlay: CustomNoRowsOverlay,
+                }}
             />
-            <EditFood {...editDrawerFormProps} />
+            <CreateFood {...createDrawerFormProps} />
+            <EditFood {...editDrawerFormProps} /> 
         </List>
     );
 };

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@mui/icons-material": "^5.8.3",
+    "@pankod/refine-antd": "^4.7.3",
     "@pankod/refine-cli": "^1.13.0",
     "@pankod/refine-core": "^3.90.4",
     "@pankod/refine-inferencer": "^2.0.2",

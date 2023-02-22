@@ -1,50 +1,63 @@
 export interface IUser {
     id: number;
-    name: string;
+    user_auth: number;
+    full_name: string;
     email: string;
-    avatar: IFile[];
+    avatar_url: IFile[];
     created_at: string;
 }
 
 export interface IFile {
-    name: string;
-    percent: number;
-    size: number;
-    status: "error" | "success" | "done" | "uploading" | "removed";
-    type: string;
     uid: string;
+    name: string;
     url: string;
-}
-
-export interface IFoods {
-    id: number;
-    user: IUser;
-    created_at: string;
-    food_name: string;
-    rating: number;
-    tags: string[];
-    location: string;
-    purchase_at: string;
-    notes: string; 
-    food_image: string;
-    category: ICategory;
-}
-
-export interface IMealPlans {
-    id: number;
-    user: IUser;
-    createdAt: string;
-    date: string;
-    period: string;
-    morningRating: number;
-    afternoonRating: number;
-    eveningRating: number;
-    eaten: boolean; 
-    mealFood: string[];
+    type: string;
+    size: number;
+    percent: number;
+    status: "error" | "success" | "done" | "uploading" | "removed";
 }
 
 export interface ICategory {
     id: number;
     title: string;
-    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface IFoods {
+    id: number;
+    created_at: string;
+    updated_at: string;
+    added_by: IUser;
+    added_by_auth: IUser;
+    food_name: string;
+    rating: number;
+    location: string;
+    purchase_at: string;
+    notes: string; 
+    food_image: string;
+    category_id: ICategory;
+}
+
+export interface IMealPlans {
+    id: number;
+    created_at: string;
+    updated_at: string;
+    date: string;
+    added_by: IUser;
+    total_foods_eaten: number;
+    notes: string;
+    day_rating: number;
+    total_foods: number;
+}
+
+export interface IMealPlanMeals {
+    id: number;
+    created_at: string;
+    updated_at: string;
+    meal_plan_id: IMealPlans;
+    food_id: IFoods;
+    period: number;
+    eaten: boolean;
+    added_by: IUser;
 }

@@ -17,6 +17,8 @@ import {
     StoreOutlined,
     LocalPizzaOutlined,
     PeopleOutlineOutlined,
+	KitchenOutlined,
+	MenuBookOutlined
 } from "@mui/icons-material";
 
 import routerProvider from "@pankod/refine-nextjs-router";
@@ -53,17 +55,18 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 						ReadyPage={ReadyPage}
 						catchAll={<ErrorComponent />}
 						resources={[
-							{
-								name: "profiles",
-								list: MuiInferencer,
-								edit: MuiInferencer,
-								show: MuiInferencer,
-								create: MuiInferencer,
-								canDelete: true,
-							},
+							// {
+							// 	name: "profiles",
+							// 	list: MuiInferencer,
+							// 	edit: MuiInferencer,
+							// 	show: MuiInferencer,
+							// 	create: MuiInferencer,
+							// 	canDelete: true,
+							// },
 							{
 								name: "foods",
 								list: FoodList,
+								icon: <KitchenOutlined />,
 							},
 							{
 								name: "meal_plans",
@@ -72,6 +75,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 								show: MuiInferencer,
 								create: MuiInferencer,
 								canDelete: true,
+								icon: <MenuBookOutlined />,
 							},
 							{
 								name: "categories",
