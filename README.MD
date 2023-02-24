@@ -2,9 +2,9 @@
 
 <div align="center">
 
-Use [Screely](https://www.screely.com/) for a screenshot mockup
+![screely-1677225620031](https://user-images.githubusercontent.com/5871075/221125245-befbbaba-88a2-4f56-b88c-809858caddbb.png)
 
-[Click Here to Demo](VERCEL LINK HERE)
+[Click Here to Demo](https://www.mealmind.app)
 
 </div>
 
@@ -18,12 +18,14 @@ I wanted to challenge myself and learn a new tech stack that I've never used bef
 
 Creating MealMind has been the most important project for me. I wanted to build a tool that not only helps me manage my own eating habits, but also helps others with similar struggles. That's why I'm excited to make this an open-source project (my very first one as well), so that others can benefit from it and contribute to its development. I hope that MealMind can help those with ARFID and ADHD feel more confident in their ability to plan and enjoy their meals, and I'm excited to see how it evolves as a community-driven project :)
 
+
 ## 🖥 About the tech stack
 
 ![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=for-the-badge) ![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=for-the-badge) ![Material Design Badge](https://img.shields.io/badge/Material%20Design-757575?logo=materialdesign&logoColor=fff&style=for-the-badge) ![Material Design Icons Badge](https://img.shields.io/badge/Material%20Design%20Icons-2196F3?logo=materialdesignicons&logoColor=fff&style=for-the-badge) ![Ant Design Badge](https://img.shields.io/badge/Ant%20Design-0170FE?logo=antdesign&logoColor=fff&style=for-the-badge) ![styled-components Badge](https://img.shields.io/badge/styled--components-DB7093?logo=styledcomponents&logoColor=fff&style=for-the-badge) ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=for-the-badge) ![TypeScript Badge](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=for-the-badge) ![Next.js Badge](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=for-the-badge)
  ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=for-the-badge) ![React Hook Form Badge](https://img.shields.io/badge/React%20Hook%20Form-EC5990?logo=reacthookform&logoColor=fff&style=for-the-badge) ![React Table Badge](https://img.shields.io/badge/React%20Table-FF4154?logo=reacttable&logoColor=fff&style=for-the-badge) ![React Query Badge](https://img.shields.io/badge/React%20Query-FF4154?logo=reactquery&logoColor=fff&style=for-the-badge) ![Supabase Badge](https://img.shields.io/badge/Supabase-3ECF8E?logo=supabase&logoColor=fff&style=for-the-badge) ![PostgreSQL Badge](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff&style=for-the-badge) ![Postman Badge](https://img.shields.io/badge/Postman-FF6C37?logo=postman&logoColor=fff&style=for-the-badge) ![Vercel Badge](https://img.shields.io/badge/Vercel-000?logo=vercel&logoColor=fff&style=for-the-badge) ![Node.js Badge](https://img.shields.io/badge/Node.js-393?logo=nodedotjs&logoColor=fff&style=for-the-badge) ![Yarn Badge](https://img.shields.io/badge/Yarn-2C8EBB?logo=yarn&logoColor=fff&style=for-the-badge)
 
  This [refine](https://github.com/pankod/refine) project was generated with [superplate](https://github.com/pankod/refine).
+ 
 
 ## 👤 Hackathon & Participant Info
 
@@ -43,40 +45,34 @@ Creating MealMind has been the most important project for me. I wanted to build 
 
 ### **PARTICIPANT**
 
+<img src="https://user-images.githubusercontent.com/5871075/221125288-121e9508-ed59-4b30-bd5c-dcc3449bd46e.jpg" width="20%" />
+
 **Katya Sarmiento**
-(Add social media icons?)
 
 [GitHub](https://github.com/Kitkatnik) | [LinkedIn](https://www.linkedin.com/in/katyasarmiento/) | [Twitter](https://twitter.com/kitkatnik) *(not active)*
 
 
-
-
-
 ## 👀 Preview
-
-Create an account and log in:
-
-(GIF here)
 
 Add foods to track
 
-(GIF here)
+<img width="1672" alt="CleanShot 2023-02-24 at 02 53 53@2x" src="https://user-images.githubusercontent.com/5871075/221124789-3c2aa672-a20d-4c89-b6b6-56d328339877.png">
 
-View and filter through all your tracked food items
+Switch to dark mode
 
-(GIF here)
+![CleanShot 2023-02-24 at 02 39 08@2x](https://user-images.githubusercontent.com/5871075/221124839-cf5e4d34-4d93-4f94-82df-b6550d1eb5e9.png)
 
 View all categories and associated food items
 
-(GIF here)
+![CleanShot 2023-02-24 at 02 39 40@2x](https://user-images.githubusercontent.com/5871075/221124883-2881b51c-3d89-4300-b86a-ae332689edee.png)
 
 Start a meal plan for today
 
-(GIF here)
+<img width="1671" alt="CleanShot 2023-02-24 at 02 54 05@2x" src="https://user-images.githubusercontent.com/5871075/221124909-c37156b6-97ab-46b9-ab39-172c73960b59.png">
 
 Add meals for breakfast, lunch, and dinner
 
-(GIF here)
+![CleanShot 2023-02-24 at 02 39 31@2x](https://user-images.githubusercontent.com/5871075/221124941-2a04ec5b-a31f-4c84-a9aa-147b221e3214.png)
 
 Coming soon...
 
@@ -91,30 +87,26 @@ Coming soon...
 * Importing and exporting food items and meal plans
 * Set goals on eating more often, more variety, etc
 
-(add roadmap link?)
-
-
 <br/>
-
 
 
 ## Set up Project
 
 Sign up for a Supabase account
 
-Follow the Supabase Set Up Guide (link to different README)
+Set up databases:
+
+(Coming Soon)
+
 
 ## Prerequisites
 
-(get links from package json)
-
-* Supabase account
-    * TABLES
-    * TRIGGER
-    * FUNCTION
-* Node / NPM / Yarn
+* Refine
+* Supabase
+* Node / Yarn
 * Javascript / Typescript 
 * React / Nextjs
+
 
 ## Install Project
 
@@ -151,6 +143,7 @@ Set up local env variables
 ```bash
     yarn start
 ```
+
 
 # Learn More
 
