@@ -2,8 +2,7 @@
 
 <div align="center">
 
-![CleanShot 2023-02-24 at 02 20 21@2x](https://user-images.githubusercontent.com/5871075/221131720-269a9071-74d9-49bd-b03b-af4b4e50e182.png)
-
+![33837_MealMind_Banner](https://user-images.githubusercontent.com/5871075/221132705-25a49e61-1f9b-432a-95c8-41b540436479.png)
  
 [Click Here to Demo](https://www.mealmind.app)
 
