@@ -32,7 +32,7 @@ import {
 import { CloseOutlined } from "@mui/icons-material";
 
 import { StyledRating, IconContainer, customIcons } from "../ratings";
-import { ICategory, IFoods } from "../../interfaces";
+import { ICategory, IFoods, IUser } from "../../interfaces";
 import { supabaseClient, normalizeFile } from "../../utility";
 
 export const CreateFood: React.FC<
@@ -55,8 +55,12 @@ export const CreateFood: React.FC<
 	});
 	const { data: identity } = useGetIdentity<{ id: number; fullName: string }>();
 
-	const userId = foodsList?.data[0].added_by ?? 0;
 	const userIdAuth = identity?.id ?? 0;
+
+	const { data: userDataResults } = useList<IUser>({
+		resource: "profiles"
+	});
+	const userId = userDataResults?.data[0]?.id
 
 	const { autocompleteProps } = useAutocomplete<ICategory>({
 		resource: "categories",
@@ -91,7 +95,7 @@ export const CreateFood: React.FC<
 			};
 			return <ImageContainer />;
 		} else {
-			console.log("other");
+			// console.log("other");
 			return (
 				<Avatar
 					style={{
@@ -268,13 +272,14 @@ export const CreateFood: React.FC<
 									<StyledRating
 										{...register("rating")}
 										value={getValues("rating")}
-										onChange={(event) => {
-											setValue("rating", Number(event.target.value));
+										onChange={(_, value: number | null) => {
+											setValue("rating", Number(value));
 										}}
 										name="highlight-selected-only"
 										IconContainerComponent={IconContainer}
 										getLabelText={(value: number) => customIcons[value].label}
 										highlightSelectedOnly
+										max={5}
 									/>
 									{errors.rating && (
 										<FormHelperText error>
@@ -327,7 +332,7 @@ export const CreateFood: React.FC<
 									<input
 										type="hidden"
 										{...register("added_by")}
-										defaultValue={userId}
+										defaultValue={`${userId}`}
 									/>
 									<input
 										type="hidden"

@@ -11,7 +11,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import * as dayjs from 'dayjs'
 import * as objectSupport from "dayjs/plugin/objectSupport";
-dayjs.extend(objectSupport);
+dayjs.extend(objectSupport); // eslint-disable-line
 
 import {
 	Drawer,
@@ -50,8 +50,12 @@ export const CreateMealPlan: React.FC<
 	});
 	const { data: identity } = useGetIdentity<{ id: number; fullName: string }>();
 
-	const userId = mealPlansList?.data[0].added_by ?? 0;
 	const userIdAuth = identity?.id ?? 0;
+
+	const { data: userDataResults } = useList<IUser>({
+		resource: "profiles"
+	});
+	const userId = userDataResults?.data[0]?.id
 
 	const [value, setValue] = React.useState();
 
@@ -106,17 +110,29 @@ export const CreateMealPlan: React.FC<
 											openTo="year"
 											value={value}
 											onChange={(newValue) => {
-												setValue(newValue)
+												setValue(newValue) // BUG: OnChange newValue for meal plan date
 											}}
 											renderInput={(params) => <TextField {...params} />}
 										/>
+										{/* <StyledRating
+										{...register("rating")}
+										value={getValues("rating")}
+										onChange={(_, value: number | null) => {
+											setValue("rating", Number(value));
+										}}
+										name="highlight-selected-only"
+										IconContainerComponent={IconContainer}
+										// getLabelText={(value: number) => customIcons[value].label}
+										highlightSelectedOnly
+										max={5}
+									/> */}
 									</LocalizationProvider>
 								</FormControl>
                                 <FormControl>
 								<input
 										type="hidden"
 										{...register("date")}
-										defaultValue={`${dayjs(value).format("YYYY-MM-DD")}`}
+										defaultValue={`${dayjs(value).format("YYYY-MM-DD")}`} // eslint-disable-line
 									/>
 									<input
 										type="hidden"

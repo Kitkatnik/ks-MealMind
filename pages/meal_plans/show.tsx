@@ -129,22 +129,6 @@ export const PeriodGrid: React.FC<AddPeriod> = ({ periodNum }) => {
     const columns = React.useMemo<GridColumns<IMealPlanMeals>>(
         () => [
             {
-                // field: "food_image",
-                // headerName: "",
-                // renderCell: function render({ row }) {
-                //     // console.log("ROW: ", row)
-                //         // row.meal_plan_id === 1
-                //         // row.food_id === 2 EQUAL TO foodList[0].id
-                //         if(foodList !== undefined){
-                //             const meal = foodList.find( (item) => item.id === row.food_id)
-                //             return <img 
-                //                 src={meal.food_image} 
-                //                 alt={meal.food_name} 
-                //             />;
-                //         }
-
-                // },
-                // flex: 1
                 field: "food_image",
                 renderHeader: function render() {
                     return <></>;
@@ -155,11 +139,10 @@ export const PeriodGrid: React.FC<AddPeriod> = ({ periodNum }) => {
                 hideSortIcons: true,
                 renderCell: function render({ row }) {
                     if(foodList !== undefined){
-                        const meal = foodList.find( (item) => item.id === row.food_id);
-                        if(meal !== undefined){
+                        if(foodList[0] !== undefined){
                             return <Avatar
-                                alt={`${meal.food_name}`}
-                                src={`${meal.food_image}`}
+                                alt={`${foodList[0]?.food_name}`}
+                                src={`${foodList[0]?.food_image}`}
                                 sx={{ width: 74, height: 74 }}
                             />;
                         }
@@ -175,13 +158,9 @@ export const PeriodGrid: React.FC<AddPeriod> = ({ periodNum }) => {
                 field: "food_name",
                 headerName: "Meals",
                 renderCell: function render({ row }) {
-                    // console.log("ROW: ", row)
-                        // row.meal_plan_id === 1
-                        // row.food_id === 2 EQUAL TO foodList[0].id
                         if(foodList !== undefined){
-                            const meal = foodList.find( (item) => item.id === row.food_id)
-                            if(meal !== undefined){
-                                return meal.food_name;
+                            if(foodList[0] !== undefined){
+                                return foodList[0]?.food_name;
                             }
                         }
                         return null;
@@ -192,23 +171,6 @@ export const PeriodGrid: React.FC<AddPeriod> = ({ periodNum }) => {
         [],
     );
 
-    const CustomNoRowsOverlay = () => {
-        console.log("HERE")
-        return (
-            <Stack height="100%" alignItems="center" justifyContent="center">
-                <Typography variant="h5">
-                    No food items found.
-                </Typography>
-                <CreateButton
-                    onClick={() => showCreateDrawer()}
-                    sx={{ margin: "10px", zIndex: 5 }}
-                >
-                    Add Food Item
-                </CreateButton>
-            </Stack>
-        )
-    }
-
     return (
         <DataGrid
             {...dataGridProps}
@@ -216,9 +178,9 @@ export const PeriodGrid: React.FC<AddPeriod> = ({ periodNum }) => {
             autoHeight
             rowHeight={80}
             rowsPerPageOptions={[4, 10, 20, 100]}
-            components={{
-                NoRowsOverlay: CustomNoRowsOverlay,
-            }}
+            // components={{
+            //     NoRowsOverlay: CustomNoRowsOverlay,
+            // }}
         />
     )
 }

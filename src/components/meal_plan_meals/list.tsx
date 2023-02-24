@@ -17,7 +17,7 @@ import {
 } from "@pankod/refine-mui";
 import { Edit, Close } from "@mui/icons-material";
 
-import { IMealPlans } from "../../src/interfaces";
+import { IMealPlans } from "../../interfaces";
 
 export const MealPlanList: React.FC<IResourceComponentsProps> = () => {
     const { show, edit } = useNavigation();

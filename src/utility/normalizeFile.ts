@@ -9,7 +9,7 @@ interface EventArgs<T = IUploadResponse> {
 }
 
 export const normalizeFile = (event: EventArgs) => {
-    const uploadedFile = event[0]; // FIXME: Fix type??
+    const uploadedFile = event[0]; // BUG: Fix upload file type?? Is this needed?
     if(uploadedFile !== undefined){
         const { uid, name, url, type, size, response, percent, status } = uploadedFile;
     

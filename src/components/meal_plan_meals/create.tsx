@@ -11,7 +11,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import * as dayjs from 'dayjs'
 import * as objectSupport from "dayjs/plugin/objectSupport";
-dayjs.extend(objectSupport);
+dayjs.extend(objectSupport); // eslint-disable-line
 
 import {
 	Drawer,
@@ -34,7 +34,7 @@ import {
 } from "@pankod/refine-mui";
 import { CloseOutlined } from "@mui/icons-material";
 
-import { IMealPlanMeals, IFoods } from "../../interfaces";
+import { IMealPlanMeals, IFoods, IUser } from "../../interfaces";
 
 export const CreateMealPlanMeal: React.FC<
 	UseModalFormReturnType<IMealPlanMeals, HttpError, IMealPlanMeals>
@@ -64,8 +64,12 @@ export const CreateMealPlanMeal: React.FC<
 	const { data: identity } = useGetIdentity<{ id: number; fullName: string }>();
 
     const mealPlanId = mealPlansList?.data[0].id ?? 0;
-	const userId = mealPlansList?.data[0].added_by ?? 0;
 	const userIdAuth = identity?.id ?? 0;
+
+	const { data: userDataResults } = useList<IUser>({
+		resource: "profiles"
+	});
+	const userId = userDataResults?.data[0]?.id
 
 	const [foodValue, setFoodValue] = React.useState();
     const [periodValue, setPeriodValue] = React.useState();
@@ -128,7 +132,7 @@ export const CreateMealPlanMeal: React.FC<
 												onChange={(_, foodValue) => {
 													field.onChange(foodValue?.id);
 												}}
-												getOptionLabel={(item) => {
+												getOptionLabel={(item: IFoods) => { 
 													return item.food_name ? item.food_name : "";
 												}}
 												isOptionEqualToValue={(option, foodValue) =>
@@ -159,9 +163,8 @@ export const CreateMealPlanMeal: React.FC<
                                         {...register("period")}
                                         aria-labelledby="demo-radio-buttons-group-label"
                                         name="radio-buttons-group"
-                                        onChange={(_, value) => {
-                                            setPeriodValue(value)
-                                            console.log(value);
+                                        onChange={ (_, value) => {
+											setPeriodValue(value)
                                         }}
                                     >
                                         <FormControlLabel {...register("period")} value={1} control={<Radio />} label="Morning" />

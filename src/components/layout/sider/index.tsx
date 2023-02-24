@@ -45,6 +45,8 @@ export const Sider: typeof DefaultSider = ({ render }) => {
     return 200;
   };
 
+  // REF: Separate Logout and other links (space-between)
+
   const t = useTranslate();
   const { Link } = useRouterContext();
   const { hasDashboard } = useRefineContext();

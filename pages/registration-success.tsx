@@ -15,6 +15,8 @@ import {
 const RegisterSuccess = () => {
 	const translate = useTranslate();
 
+	// REVIEW: Remove translate & add gmail link
+
 	const Content = (
 		<Card>
 			<CardContent sx={{ paddingX: "32px" }}>

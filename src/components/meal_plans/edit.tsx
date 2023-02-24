@@ -11,7 +11,9 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import * as dayjs from 'dayjs'
 import * as objectSupport from "dayjs/plugin/objectSupport";
-dayjs.extend(objectSupport);
+dayjs.extend(objectSupport); // eslint-disable-line
+
+// TODO: Build meal plan edit features
 
 import {
 	Drawer,
@@ -59,7 +61,7 @@ export const EditMealPlan: React.FC<
 	// console.log(mealPlansList)
 	const { data: identity } = useGetIdentity<{ id: number; fullName: string }>();
 
-	const userId = mealPlansList?.data[0].added_by ?? 0;
+	const userId = mealPlansList?.data[0]?.added_by ?? 0;
 	const userIdAuth = identity?.id ?? 0;
 
 	const [value, setValue] = React.useState();
@@ -116,7 +118,7 @@ export const EditMealPlan: React.FC<
 											openTo="year"
 											value={value}
 											onChange={(newValue) => {
-												setValue(newValue)
+												setValue(newValue) // BUG: Meal Plan newValue fix
 											}}
 											renderInput={(params) => <TextField {...params} />}
 										/>

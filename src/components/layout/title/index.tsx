@@ -5,6 +5,7 @@ import { Button } from "@pankod/refine-mui";
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {
   const { Link } = useRouterContext();
 
+  // REVIEW: Change logo
   return (
     <Button fullWidth variant="text" disableRipple>
       <Link href="/">

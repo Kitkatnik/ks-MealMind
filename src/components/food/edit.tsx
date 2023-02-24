@@ -51,6 +51,8 @@ export const EditFood: React.FC<
 	saveButtonProps,
 }) => {
 
+	// TODO: Complete food edit features
+
 	const { formProps } = useForm<IFoods>()
 
 	const foodsData = queryResult?.data?.data;
@@ -68,7 +70,7 @@ export const EditFood: React.FC<
     };
 
 	const { data: identity } = useGetIdentity<{ id: number; fullName: string }>();
-	const userId = foodsList?.data[0].added_by ?? 0;
+	const userId = foodsList?.data[0]?.added_by ?? 0;
 	const userIdAuth = identity?.id ?? 0;
 
 	const { autocompleteProps } = useAutocomplete<ICategory>({

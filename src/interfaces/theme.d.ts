@@ -1,5 +1,7 @@
 import "@pankod/refine-mui";
 
+// REVIEW: Edit theme
+
 export interface CustomTheme {
   timeLine: {
     color: {
