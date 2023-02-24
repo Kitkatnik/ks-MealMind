@@ -33,6 +33,7 @@ export const getServerSideProps: GetServerSideProps<{
           return {
             props: {
               // initialData: data,
+              // FIXME: Is this causing the redirect issues
             },
           };
         } else if (resource && !action && !id) {

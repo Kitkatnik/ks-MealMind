@@ -45,6 +45,7 @@ export interface IMealPlans {
     updated_at: string;
     date: string;
     added_by: IUser;
+    added_by_auth: IUser;
     total_foods_eaten: number;
     notes: string;
     day_rating: number;
@@ -60,4 +61,5 @@ export interface IMealPlanMeals {
     period: number;
     eaten: boolean;
     added_by: IUser;
+    added_by_auth: IUser;
 }

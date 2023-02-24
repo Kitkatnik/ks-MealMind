@@ -30,8 +30,9 @@ import { authProvider } from "src/authProvider";
 import { supabaseClient } from "src/utility";
 
 import { FoodList } from "./foods/list";
+import { MealPlanList} from "./meal_plans/list";
+import { MealPlanShow} from "./meal_plans/show";
 import { CategoryList } from "./categories/list";
-
 
 import { ColorModeContextProvider } from "@contexts";
 
@@ -55,14 +56,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 						ReadyPage={ReadyPage}
 						catchAll={<ErrorComponent />}
 						resources={[
-							// {
-							// 	name: "profiles",
-							// 	list: MuiInferencer,
-							// 	edit: MuiInferencer,
-							// 	show: MuiInferencer,
-							// 	create: MuiInferencer,
-							// 	canDelete: true,
-							// },
 							{
 								name: "foods",
 								list: FoodList,
@@ -70,17 +63,32 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 							},
 							{
 								name: "meal_plans",
+								list: MealPlanList,
+								show: MealPlanShow,
+								icon: <MenuBookOutlined />,
+							},
+							{
+								name: "meal_plan_meals",
 								list: MuiInferencer,
 								edit: MuiInferencer,
 								show: MuiInferencer,
 								create: MuiInferencer,
 								canDelete: true,
-								icon: <MenuBookOutlined />,
+								options: {hide: true}
 							},
 							{
 								name: "categories",
 								list: CategoryList,
                                 icon: <CategoryOutlined />,
+							},
+							{
+								name: "profiles",
+								list: MuiInferencer,
+								edit: MuiInferencer,
+								show: MuiInferencer,
+								create: MuiInferencer,
+								canDelete: true,
+								options: {hide: true}
 							},
 						]}
 						Title={Title}

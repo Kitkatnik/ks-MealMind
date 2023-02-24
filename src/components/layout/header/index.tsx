@@ -99,10 +99,10 @@ export const Header: React.FC = () => {
 				<Stack
 					direction="row"
 					width="100%"
-					justifyContent="space-between"
+					justifyContent="end"
 					alignItems="center"
 				>
-					<Stack direction="row" flex={1}>
+					{/* <Stack direction="row" flex={1}>
 						<Autocomplete
 							sx={{
 								maxWidth: 550,
@@ -181,7 +181,7 @@ export const Header: React.FC = () => {
 								);
 							}}
 						/>
-					</Stack>
+					</Stack> */}
 					<Stack direction="row" alignItems="center">
 						<IconButton
 							onClick={() => {

@@ -347,7 +347,7 @@ export const EditFood: React.FC<
 									<input
 										type="hidden"
 										{...register("added_by")}
-										defaultValue={userId}
+										defaultValue={`${userId}`}
 									/>
 									<input
 										type="hidden"

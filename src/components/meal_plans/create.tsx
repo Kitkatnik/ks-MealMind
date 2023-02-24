@@ -1,0 +1,139 @@
+import React, { useState } from "react";
+import {
+	Controller,
+	UseModalFormReturnType,
+} from "@pankod/refine-react-hook-form";
+import { useList, HttpError, useGetIdentity } from "@pankod/refine-core";
+
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import * as dayjs from 'dayjs'
+import * as objectSupport from "dayjs/plugin/objectSupport";
+dayjs.extend(objectSupport);
+
+import {
+	Drawer,
+	FormControlLabel,
+	Avatar,
+	Typography,
+	FormLabel,
+	Stack,
+	Box,
+	IconButton,
+	FormControl,
+	Autocomplete,
+	OutlinedInput,
+	FormHelperText,
+	Create,
+	useAutocomplete,
+	TextField,
+} from "@pankod/refine-mui";
+import { CloseOutlined } from "@mui/icons-material";
+
+import { IMealPlans } from "../../interfaces";
+
+export const CreateMealPlan: React.FC<
+	UseModalFormReturnType<IMealPlans, HttpError, IMealPlans>
+> = ({
+	register,
+	formState: { errors },
+	refineCore: { queryResult, onFinish },
+	handleSubmit,
+	modal: { visible, close },
+	saveButtonProps,
+}) => {
+
+	const { data: mealPlansList } = useList<IMealPlans, HttpError>({
+		resource: "meal_plans",
+	});
+	const { data: identity } = useGetIdentity<{ id: number; fullName: string }>();
+
+	const userId = mealPlansList?.data[0].added_by ?? 0;
+	const userIdAuth = identity?.id ?? 0;
+
+	const [value, setValue] = React.useState();
+
+	return (
+		<Drawer
+			sx={{ zIndex: "1301" }}
+			PaperProps={{ sx: { width: { sm: "100%", md: 500 } } }}
+			open={visible}
+			onClose={close}
+			anchor="right"
+		>
+			<Create
+				saveButtonProps={saveButtonProps}
+				cardHeaderProps={{
+					avatar: (
+						<IconButton
+							onClick={() => close()}
+							sx={{
+								width: "30px",
+								height: "30px",
+								mb: "5px",
+							}}
+						>
+							<CloseOutlined />
+						</IconButton>
+					),
+					action: null,
+				}}
+				cardProps={{ sx: { overflowY: "scroll", height: "100vh" } }}
+			>
+				<Stack>
+					<Box
+						paddingX="50px"
+						justifyContent="center"
+						alignItems="center"
+						sx={{
+							paddingX: {
+								xs: 1,
+								md: 6,
+							},
+						}}
+					>
+						<form onSubmit={handleSubmit(onFinish)}>
+							<Stack gap="10px" marginTop="10px">
+								<FormControl>
+									<FormLabel required>{"Meal Plan Date"}</FormLabel>
+									<LocalizationProvider 
+										dateAdapter={AdapterDayjs}
+									>
+										<StaticDatePicker
+											displayStaticWrapperAs="desktop"
+											openTo="year"
+											value={value}
+											onChange={(newValue) => {
+												setValue(newValue)
+											}}
+											renderInput={(params) => <TextField {...params} />}
+										/>
+									</LocalizationProvider>
+								</FormControl>
+                                <FormControl>
+								<input
+										type="hidden"
+										{...register("date")}
+										defaultValue={`${dayjs(value).format("YYYY-MM-DD")}`}
+									/>
+									<input
+										type="hidden"
+										{...register("added_by")}
+										defaultValue={`${userId}`}
+									/>
+									<input
+										type="hidden"
+										{...register("added_by_auth")}
+										defaultValue={userIdAuth}
+									/>
+								</FormControl>
+							</Stack>
+						</form>
+					</Box>
+				</Stack>
+			</Create>
+		</Drawer>
+	);
+};
