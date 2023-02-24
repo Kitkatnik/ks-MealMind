@@ -177,7 +177,7 @@ export const PeriodGrid: React.FC<AddPeriod> = ({ periodNum }) => {
     )
 }
 
-export const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
+const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
 
     const {
         queryResult: { data: currMealPlan },
@@ -273,3 +273,5 @@ export const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
         </Show>
     );
 };
+
+export default MealPlanShow;

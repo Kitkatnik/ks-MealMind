@@ -30,7 +30,7 @@ import {
 } from "../../src/components/meal_plans";
 import { IMealPlans } from "../../src/interfaces";
 
-export const MealPlanList: React.FC<IResourceComponentsProps> = () => {
+const MealPlanList: React.FC<IResourceComponentsProps> = () => {
     const { show, edit } = useNavigation();
     const { mutate: mutateDelete } = useDelete();
 
@@ -147,3 +147,5 @@ export const MealPlanList: React.FC<IResourceComponentsProps> = () => {
         </>
     );
 };
+
+export default MealPlanList;

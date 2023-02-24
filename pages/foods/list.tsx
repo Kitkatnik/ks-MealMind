@@ -22,7 +22,7 @@ import {
 } from "../../src/components/food";
 import { IFoods } from "../../src/interfaces";
 
-export const FoodList: React.FC<IResourceComponentsProps> = () => {
+const FoodList: React.FC<IResourceComponentsProps> = () => {
 
     const { tableQueryResult, setFilters, setCurrent, filters, pageCount } =
         useTable<IFoods>({
@@ -157,3 +157,5 @@ export const FoodList: React.FC<IResourceComponentsProps> = () => {
         </>
     );
 };
+
+export default FoodList;

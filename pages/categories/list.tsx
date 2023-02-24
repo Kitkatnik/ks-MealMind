@@ -42,7 +42,7 @@ import { ICategory, IFoods } from "../../src/interfaces";
 import { CreateFood, EditFood } from "../../src/components/food";
 import { StyledRating, IconContainer, customIcons,  } from '../../src/components/ratings'
 
-export const CategoryList: React.FC<IResourceComponentsProps> = () => {
+const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const {
         refineCore: { onFinish, id, setId },
         handleSubmit,
@@ -372,3 +372,5 @@ const CategoryFoodsTable: React.FC<{ record: ICategory }> = ({ record }) => {
         </List>
     );
 };
+
+export default CategoryList;

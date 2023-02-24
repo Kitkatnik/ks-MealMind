@@ -24,10 +24,10 @@ import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 import { authProvider } from "src/authProvider";
 import { supabaseClient } from "src/utility";
 
-import { FoodList } from "./foods/list";
-import { MealPlanList} from "./meal_plans/list";
-import { MealPlanShow} from "./meal_plans/show";
-import { CategoryList } from "./categories/list";
+import FoodList from "./foods/list";
+import MealPlanList from "./meal_plans/list";
+import MealPlanShow from "./meal_plans/show";
+import CategoryList from "./categories/list";
 
 import { ColorModeContextProvider } from "@contexts";
 
