@@ -376,6 +376,7 @@ export const Sider: typeof DefaultSider = ({ render }) => {
               bgcolor: "secondary.main",
               overflow: "hidden",
               transition: "width 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+              paddingTop: "20px"
             },
           }}
           open
