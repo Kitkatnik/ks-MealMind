@@ -53,17 +53,17 @@ export const EditFood: React.FC<
 
 	// TODO: Complete food edit features
 
-	const { formProps } = useForm<IFoods>()
+	// const { formProps } = useForm<IFoods>()
 
 	const foodsData = queryResult?.data?.data;
 	const { data: foodsList } = useList<IFoods, HttpError>({
 		resource: "foods",
 	});
 
-	const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: foodsData?.category_id,
-    });
+	// const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    //     resource: "categories",
+    //     defaultValue: foodsData?.category_id,
+    // });
 
     const handleRefresh = () => {
         queryResult?.refetch();
@@ -164,7 +164,7 @@ export const EditFood: React.FC<
 							},
 						}}
 					>
-						<form {...formProps} onSubmit={handleSubmit(onFinish)}>
+						<form onSubmit={handleSubmit(onFinish)}>
 							<FormControl sx={{ width: "100%" }}>
 								<FormLabel>{"Image"}</FormLabel>
 								<Form.Item
@@ -196,14 +196,10 @@ export const EditFood: React.FC<
 											if (error) {
 												return onError?.(error);
 											}
-											const { data, error: urlError } =
+											const { data} =
 												await supabaseClient.storage
 													.from("foods")
 													.getPublicUrl(fileUrl);
-
-											if (urlError) {
-												return onError?.(urlError);
-											}
 
 											onSuccess?.(
 												{ url: data?.publicUrl },
@@ -290,13 +286,14 @@ export const EditFood: React.FC<
 									<StyledRating
 										{...register("rating")}
 										value={getValues("rating")}
-										onChange={(event) => {
-											setValue("rating", Number(event.target.value));
+										onChange={(_, value: number | null) => {
+											setValue("rating", Number(value));
 										}}
 										name="highlight-selected-only"
 										IconContainerComponent={IconContainer}
 										getLabelText={(value: number) => customIcons[value].label}
 										highlightSelectedOnly
+										max={5}
 									/>
 									{errors.rating && (
 										<FormHelperText error>
