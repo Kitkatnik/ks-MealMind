@@ -2,8 +2,9 @@
 
 <div align="center">
 
-![screely-1677225620031](https://user-images.githubusercontent.com/5871075/221125245-befbbaba-88a2-4f56-b88c-809858caddbb.png)
+![CleanShot 2023-02-24 at 02 20 21@2x](https://user-images.githubusercontent.com/5871075/221131720-269a9071-74d9-49bd-b03b-af4b4e50e182.png)
 
+ 
 [Click Here to Demo](https://www.mealmind.app)
 
 </div>
@@ -94,10 +95,190 @@ Coming soon...
 
 Sign up for a Supabase account
 
-Set up databases:
+Create the following tables, triggers, functions, and RLS policies...
 
-(Coming Soon)
+**PROFILES**
 
+TABLE
+
+* id int8 is identity and primary key
+* created_at timestampz default now()
+* updated_at  timestampz default now()
+* email varchar
+* full_name varchar
+* avatar_url text
+
+FUNCTION
+
+* Name: handle_new_user
+* Schema: public
+* Code:
+
+```SQL
+begin
+  insert into public.profiles (user_auth, email, created_at, updated_at)
+  values (new.id, new.email, new.created_at, new.updated_at);
+  return new;
+end;
+```
+
+TRIGGER
+
+* Name: on_auth_user_created
+* Table: auth.users
+* Function: handle_new_user
+* Events: AFTER INSERT
+
+
+RLS POLICIES
+
+SELECT - Profiles are viewable by users who created them
+```SQL
+BEGIN;
+  ALTER POLICY "Profiles are viewable by users who created them." ON "public"."profiles" USING ((auth.uid() = user_auth);
+COMMIT;
+```
+
+UPDATE - Users can update their own profile
+```SQL
+BEGIN;
+  ALTER POLICY "Users can update own profile." ON "public"."profiles" USING ((auth.uid() = user_auth);
+COMMIT;
+```
+
+
+**CATEGORIES**
+
+TABLE
+
+* id int8 is identity and primary key
+* created_at timestampz default now()
+* updated_at  timestampz default now()
+* title text default NULL 
+
+ROWS
+
+Add the following categories or create your own:
+* Bread/Bakery
+* Breakfast
+* Canned
+* Condiment/Spice
+* Dairy
+* Deli
+* Drink
+* Ethnic
+* Fast Food
+* Frozen
+* Fruit
+* Grain
+* Home-Made
+* Meat
+* Other
+* Restaurant
+* Sauce/Oil
+* Seafood
+* Snack
+* Sweet
+* Vegetable
+
+RLS POLICIES
+
+Disabled
+
+
+FOODS
+
+* id int8 is identity and primary key
+* created_at timestampz default now()
+* updated_at  timestampz default now()
+* food_name text
+* rating int4
+* location text default NULL
+* purchase_at default NULL
+* notes text default NULL
+* food_image text default url (pick whatever default image you want)
+* added_by int 8 foreign key PROFILE.id
+* added_by_auth uuid foreign key PROFILE.auth_id
+* category_id int8 foreign key CATEGORIES.id
+
+RLS POLICIES
+
+INSERT - All users can insert foods
+``` SQL
+BEGIN;
+  ALTER POLICY "All users can insert foods" ON "public"."foods" WITH CHECK (true);
+COMMIT;
+```
+
+SELECT - Users can see foods they've entered
+``` SQL
+BEGIN;
+  ALTER POLICY "Users can see foods they've entered" ON "public"."foods" USING ((auth.uid() = added_by_auth);
+COMMIT;
+```
+
+UPDATE - Users can update foods they've entered
+``` SQL
+BEGIN;
+  ALTER POLICY "Users can update foods they've entered" ON "public"."foods" USING ((auth.uid() = added_by_auth);
+COMMIT;
+```
+
+**MEAL PLANS**
+
+TABLE
+
+* id int8 is identity and primary key
+* created_at timestampz default now()
+* updated_at  timestampz default now()
+* date date
+* added_by int 8 foreign key PROFILE.id
+* added_by_auth uuid foreign key PROFILE.auth_id
+* total_foods int8 default 0 (needed for later features)
+* total_foods_eaten int8 default 0 (needed for later features)
+* day_rating int8
+* notes text
+
+RLS POLICIES
+
+ALL - Enable all meal plan actions for user based on id
+```SQL
+BEGIN;
+  ALTER POLICY "Enable all meal plan actions for user based on id." ON "public"."meal_plans" USING ((auth.uid() = added_by_auth);
+COMMIT;
+```
+
+**MEAL PLAN MEALS**
+
+TABLE
+
+* id int8 is identity and primary key
+* created_at timestampz default now()
+* updated_at  timestampz default now()
+* period int8
+* eaten boolean default false (needed for later features)
+* added_by int 8 foreign key PROFILE.id
+* added_by_auth uuid foreign key PROFILE.auth_id
+* meal_plan_id int8 foreign key MEAL_PLANS.id
+* food_id int8 foreign key FOODS.id
+
+RLS POLICIES
+
+INSERT - Users can add meals to meal plans
+```SQL
+BEGIN;
+  ALTER POLICY "Users can add meals to meal plans" ON "public"."meal_plan_meals" WITH CHECK (true);
+COMMIT;
+```
+
+SELECT - Users can see the meals they've entered
+```SQL
+BEGIN;
+  ALTER POLICY "Users can see the meals they've entered" ON "public"."meal_plan_meals" USING ((auth.uid() = added_by_auth);
+COMMIT;
+```
+
+Set up Authentication with Supabase - [Click Here for Docs](https://supabase.com/docs/guides/auth/overview)
 
 ## Prerequisites
 
@@ -112,7 +293,7 @@ Set up databases:
 
 - Clone the repository:
 ```
-git clone <your repo github link>
+git clone https://github.com/Kitkatnik/ks-MealMind.git
 ```
 
 - Change directory and install dependencies:
@@ -124,7 +305,8 @@ npm install
 
 Set up local env variables
 
-* Supabase API (link to guide again)
+[Add your Supabase API URL and KEY](https://supabase.com/docs/guides/database/connecting-to-postgres#api-url-and-keys)
+
 
 ### **Running the development server.**
 
