@@ -109,7 +109,7 @@ export const EditFood: React.FC<
 			};
 			return <ImageContainer />;
 		} else {
-			console.log("other");
+			// console.log("other");
 			return (
 				<Avatar
 					style={{

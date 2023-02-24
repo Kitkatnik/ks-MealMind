@@ -192,7 +192,7 @@ export const AddMeal: React.FC<AddPeriod> = ({ periodNum }) => {
         resource: "meal_plans"
     });
     const mealPlan = mealplans?.data;
-    console.log("mealPlan: ", mealPlan) // meal_plan_id === 1 (number)
+    // console.log("mealPlan: ", mealPlan) // meal_plan_id === 1 (number)
 
     const {
         options,
@@ -229,7 +229,7 @@ export const AddMeal: React.FC<AddPeriod> = ({ periodNum }) => {
                 }
             ]
         });
-        console.log("autocompleterpos: ", autocompleteProps)
+        // console.log("autocompleterpos: ", autocompleteProps)
     
         return (
             <Create 
@@ -319,8 +319,8 @@ export const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
     } = useShow<IMealPlans>({
         resource: "meal_plans"
     });
-    console.log("Current ========")
-    console.log(currMealPlan?.data.date)
+    // console.log("Current ========")
+    // console.log(currMealPlan?.data.date)
     
     const createDrawerFormProps = useModalForm<IMealPlanMeals, HttpError, IMealPlanMeals>({
         refineCoreProps: { 

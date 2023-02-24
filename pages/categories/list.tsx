@@ -318,7 +318,7 @@ const CategoryFoodsTable: React.FC<{ record: ICategory }> = ({ record }) => {
     );
 
     const CustomNoRowsOverlay = () => {
-        console.log("HERE")
+        // console.log("HERE")
         return (
             <Stack height="100%" alignItems="center" justifyContent="center">
                 <Typography variant="h5">
