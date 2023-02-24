@@ -13,17 +13,12 @@ import {
 import {
     List,
     BooleanField,
-    Checkbox,
     TableContainer,
     Table,
     Stack,
-    EditButton,
     TableBody,
     TableRow,
-    Button,
-    SaveButton,
     TableCell,
-    TextField,
     TableHead,
     IconButton,
     Typography,
@@ -32,8 +27,6 @@ import {
     Avatar,
     GridColumns,
     DataGrid,
-    DateField,
-    NumberField,
     GridActionsCellItem,
     CreateButton
 } from "@pankod/refine-mui";
@@ -52,7 +45,6 @@ import { StyledRating, IconContainer, customIcons,  } from '../../src/components
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const {
         refineCore: { onFinish, id, setId },
-        register,
         handleSubmit,
     } = useForm<ICategory>({
         refineCoreProps: {

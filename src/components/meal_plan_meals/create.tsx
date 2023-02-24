@@ -10,8 +10,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import * as dayjs from 'dayjs'
-import * as objectSupport from "dayjs/plugin/objectSupport";
-dayjs.extend(objectSupport); // eslint-disable-line
+import objectSupport from "dayjs/plugin/objectSupport";
+dayjs.extend(objectSupport);
 
 import {
 	Drawer,
@@ -72,7 +72,7 @@ export const CreateMealPlanMeal: React.FC<
 	const userId = userDataResults?.data[0]?.id
 
 	const [foodValue, setFoodValue] = React.useState();
-    const [periodValue, setPeriodValue] = React.useState();
+    const [periodValue, setPeriodValue] = React.useState(1);
 
 	return (
 		<Drawer
@@ -158,20 +158,20 @@ export const CreateMealPlanMeal: React.FC<
 									)}
 								</FormControl>
                                 <FormControl>
-                                    <FormLabel id="demo-radio-buttons-group-label">Time of Day</FormLabel>
-                                    <RadioGroup
-                                        {...register("period")}
-                                        aria-labelledby="demo-radio-buttons-group-label"
-                                        name="radio-buttons-group"
-                                        onChange={ (_, value) => {
-											setPeriodValue(value)
-                                        }}
-                                    >
-                                        <FormControlLabel {...register("period")} value={1} control={<Radio />} label="Morning" />
-                                        <FormControlLabel {...register("period")} value={2} control={<Radio />} label="Afternoon" />
-                                        <FormControlLabel {...register("period")} value={3} control={<Radio />} label="Evening" />
-                                    </RadioGroup>
-                                    </FormControl>
+									<FormLabel id="demo-radio-buttons-group-label">Time of Day</FormLabel>
+									<RadioGroup
+										{...register("period")}
+										aria-labelledby="demo-radio-buttons-group-label"
+										name="radio-buttons-group"
+										onChange={(_, value) => {
+											setPeriodValue(Number(value));
+										}}
+									>
+									<FormControlLabel {...register("period")} value={1} control={<Radio />} label="Morning" />
+									<FormControlLabel {...register("period")} value={2} control={<Radio />} label="Afternoon" />
+									<FormControlLabel {...register("period")} value={3} control={<Radio />} label="Evening" />
+									</RadioGroup>
+								</FormControl>
                                 <FormControl>
                                     <input
 										type="hidden"
@@ -202,21 +202,3 @@ export const CreateMealPlanMeal: React.FC<
 		</Drawer>
 	);
 };
-
-// Date (hidden and from previous stuff)
-// Food choice
-// Period of time (Morning Afternoon Night -- 1, 2, 3 radio group??)
-
-
-
-/*
-
-    NEED                CURRENT
-    added_by            
-    added_by_auth
-    date
-    food_id             food_name       4
-    period              NA
-
-
-*/

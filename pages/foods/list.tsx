@@ -1,9 +1,7 @@
 import React from "react";
 import {
-    useTranslate,
     IResourceComponentsProps,
     useTable,
-    getDefaultFilter,
     HttpError,
 } from "@pankod/refine-core";
 import { useModalForm } from "@pankod/refine-react-hook-form";
@@ -11,8 +9,6 @@ import {
     Grid,
     Paper,
     Typography,
-    InputBase,
-    IconButton,
     Stack,
     Pagination,
     CreateButton,

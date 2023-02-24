@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {
     IResourceComponentsProps,
     useDelete,
-    useCreate,
     useNavigation,
     HttpError,
 } from "@pankod/refine-core";

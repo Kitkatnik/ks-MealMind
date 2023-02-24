@@ -11,12 +11,7 @@ import {
 	ErrorComponent,
 } from "@pankod/refine-mui";
 import {
-    AddShoppingCartOutlined,
-    StarBorderOutlined,
     CategoryOutlined,
-    StoreOutlined,
-    LocalPizzaOutlined,
-    PeopleOutlineOutlined,
 	KitchenOutlined,
 	MenuBookOutlined
 } from "@mui/icons-material";

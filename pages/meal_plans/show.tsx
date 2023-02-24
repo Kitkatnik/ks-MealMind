@@ -19,8 +19,6 @@ import {
     Typography,
     useDataGrid,
     Button,
-    Tooltip,
-    Rating,
     useAutocomplete,
     Autocomplete,
     TextField,
@@ -31,12 +29,6 @@ import {
     Show
 } from "@pankod/refine-mui";
 import {
-    LocalPhoneOutlined,
-    MapOutlined,
-    DirectionsCarFilledOutlined,
-    EmailOutlined,
-    AccountBalanceOutlined,
-    StoreOutlined,
     AddOutlined
 } from "@mui/icons-material";
 
@@ -185,133 +177,6 @@ export const PeriodGrid: React.FC<AddPeriod> = ({ periodNum }) => {
     )
 }
 
-export const AddMeal: React.FC<AddPeriod> = ({ periodNum }) => {
-    const {
-        queryResult: { data: mealplans },
-    } = useShow<IMealPlans>({
-        resource: "meal_plans"
-    });
-    const mealPlan = mealplans?.data;
-    // console.log("mealPlan: ", mealPlan) // meal_plan_id === 1 (number)
-
-    const {
-        options,
-        queryResult: { isLoading, data },
-    } = useSelect<IFoods>({
-        resource: "foods",
-        hasPagination: false,
-    });
-    // const { data: identity } = useGetIdentity<{ id: number; fullName: string }>();
-
-        const {
-            saveButtonProps,
-            refineCore: { formLoading, queryResult },
-            register,
-            control,
-            formState: { errors },
-        } = useForm<IFoods, HttpError, IFoods>();
-        const foodsData = queryResult?.data?.data;
-    
-        const { autocompleteProps } = useAutocomplete<IFoods>({
-            resource: "foods",
-            defaultValue: foodsData?.id,
-            sort: [
-                {
-                    field: "food_name",
-                    order: "asc",
-                },
-            ],
-            onSearch: (value) => [
-                {
-                    field: "food_name",
-                    operator: "contains",
-                    value,
-                }
-            ]
-        });
-        // console.log("autocompleterpos: ", autocompleteProps)
-    
-        return (
-            <Create 
-                resource="meal_plan_meals" 
-                saveButtonProps={saveButtonProps} 
-                title={false} 
-                breadcrumb={false}
-                goBack={false}
-                wrapperProps={{
-                    sx: {
-                        marginBottom: "10px",
-                    }
-                }}
-                headerProps={{
-                    sx: {
-                        margin: "0",
-                        padding: "0",
-                        display: "none",
-                        visibility: "hidden"
-                    }
-                }}
-                headerButtons={false}
-                {...register('id')}
-            >
-                <Box component="form" isLoading={formLoading} >
-                    <Controller
-                        control={control}
-                        name="foods"
-                        rules={{ required: "This field is required" }}
-                        render={({ field }) => (
-                            <Autocomplete
-                            {...autocompleteProps}
-                            {...field}
-                            onChange={(event, value) => {
-                                field.onChange(value); // pass the selected food item object
-                            }}
-                            getOptionLabel={({ food_name }) => food_name}
-                            isOptionEqualToValue={(option, value) =>
-                                value === undefined || option.id.toString() === value.toString()
-                            }
-                            placeholder="Select a food item"
-                            renderInput={(params) => (
-                                <TextField
-                                {...params}
-                                label="Add a Food Item"
-                                margin="normal"
-                                variant="outlined"
-                                sx={{ width: "70%" }}
-                                required
-                                />
-                            )}
-                            />
-                        )}
-                    />
-
-                    <FormControl>
-                        <input
-                            type="hidden"
-                            {...register("added_by")}
-                            // defaultValue={foodsData.added_by}
-                        />
-                        <input
-                            type="hidden"
-                            {...register("added_by_auth")}
-                            // defaultValue={foodsData.added_by_auth}
-                        />
-                        <input
-                            type="hidden"
-                            {...register("meal_plan_id")} // url params
-                            // defaultValue={mealPlan.id}
-                        />
-                        <input
-                            type="hidden"
-                            {...register("period")} // props
-                            defaultValue={1}
-                        />
-                    </FormControl>
-                </Box>
-            </Create>
-        )
-    }
-
 export const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
 
     const {
@@ -371,26 +236,6 @@ export const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
                                 icon={<StoreOutlined />}
                                 text={MealPlan?.store.title}
                             />
-                            <MealPlanInfoText
-                                icon={<LocalPhoneOutlined />}
-                                text={MealPlan?.gsm}
-                            />
-                            <MealPlanInfoText
-                                icon={<EmailOutlined />}
-                                text={MealPlan?.email}
-                            />
-                            <MealPlanInfoText
-                                icon={<AccountBalanceOutlined />}
-                                text={MealPlan?.accountNumber}
-                            />
-                            <MealPlanInfoText
-                                icon={<MapOutlined />}
-                                text={MealPlan?.address}
-                            />
-                            <MealPlanInfoText
-                                icon={<DirectionsCarFilledOutlined />}
-                                text={MealPlan?.licensePlate}
-                            />
                         </Stack>
                     </Paper>
                 </Grid> */}
@@ -400,7 +245,6 @@ export const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
                             cardHeaderProps={{ title: "Morning" }}
                             breadcrumb={false}
                         >
-                            {/* <AddMeal periodNum={1} /> */}
                             <PeriodGrid periodNum={1} />
                         </List>
                     </Stack>
@@ -411,7 +255,6 @@ export const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
                             cardHeaderProps={{ title: "Afternoon" }}
                             breadcrumb={false}
                         >
-                            {/* <AddMeal periodNum={2} /> */}
                             <PeriodGrid periodNum={2} />
                         </List>
                     </Stack>
@@ -422,7 +265,6 @@ export const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
                             cardHeaderProps={{ title: "Evening" }}
                             breadcrumb={false}
                         >
-                            {/* <AddMeal periodNum={3} /> */}
                             <PeriodGrid periodNum={3} />
                         </List>
                     </Stack>

@@ -9,9 +9,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
-import * as dayjs from 'dayjs'
-import * as objectSupport from "dayjs/plugin/objectSupport";
-dayjs.extend(objectSupport); // eslint-disable-line
+import dayjs from 'dayjs'
+import objectSupport from "dayjs/plugin/objectSupport";
+dayjs.extend(objectSupport);
 
 import {
 	Drawer,
@@ -32,7 +32,7 @@ import {
 } from "@pankod/refine-mui";
 import { CloseOutlined } from "@mui/icons-material";
 
-import { IMealPlans } from "../../interfaces";
+import { IMealPlans, IUser } from "../../interfaces";
 
 export const CreateMealPlan: React.FC<
 	UseModalFormReturnType<IMealPlans, HttpError, IMealPlans>
@@ -110,10 +110,14 @@ export const CreateMealPlan: React.FC<
 											openTo="year"
 											value={value}
 											onChange={(newValue) => {
-												setValue(newValue) // BUG: OnChange newValue for meal plan date
+												console.log("TYPE OF NEW VALUE: ",typeof newValue);
+												if (newValue !== null && newValue !== undefined) {
+													setValue(newValue);
+												}
 											}}
 											renderInput={(params) => <TextField {...params} />}
 										/>
+
 										{/* <StyledRating
 										{...register("rating")}
 										value={getValues("rating")}
