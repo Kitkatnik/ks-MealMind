@@ -5,6 +5,7 @@
 ![33837_MealMind_Banner](https://user-images.githubusercontent.com/5871075/221132705-25a49e61-1f9b-432a-95c8-41b540436479.png)
  
 [Click Here to Demo](https://www.mealmind.app)
+You can tour this app's repo using [CodeSee](https://app.codesee.io/maps/public/5db76fa0-b54f-11ed-a159-e35b74d3b925)
 
 </div>
 
