@@ -8,9 +8,9 @@
 
 </div>
 
-# About
+## Description
 
-## 💼 Project Description
+### 💼 About this project
 
 MealMind is a food tracking & meal planning app that helps people with Avoidant/Restrictive Food Intake Disorder (ARFID) and Attention Deficit Hyperactivity Disorder (ADHD) improve their eating habits. As someone who suffers from both ARFID and ADHD, I know first-hand how difficult it is to just eat... especially when certain foods or textures are a struggle to eat... or when I just forget to eat all day for no other reason than "I forgot" (oops). That's why I created MealMind, to make meal planning an enjoyable and stress-free experience.
 
@@ -19,15 +19,25 @@ I wanted to challenge myself and learn a new tech stack that I've never used bef
 Creating MealMind has been the most important project for me. I wanted to build a tool that not only helps me manage my own eating habits, but also helps others with similar struggles. That's why I'm excited to make this an open-source project (my very first one as well), so that others can benefit from it and contribute to its development. I hope that MealMind can help those with ARFID and ADHD feel more confident in their ability to plan and enjoy their meals, and I'm excited to see how it evolves as a community-driven project :)
 
 
-## 🖥 About the tech stack
+### 🖥 About the tech stack
 
 ![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=for-the-badge) ![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=for-the-badge) ![Material Design Badge](https://img.shields.io/badge/Material%20Design-757575?logo=materialdesign&logoColor=fff&style=for-the-badge) ![Material Design Icons Badge](https://img.shields.io/badge/Material%20Design%20Icons-2196F3?logo=materialdesignicons&logoColor=fff&style=for-the-badge) ![Ant Design Badge](https://img.shields.io/badge/Ant%20Design-0170FE?logo=antdesign&logoColor=fff&style=for-the-badge) ![styled-components Badge](https://img.shields.io/badge/styled--components-DB7093?logo=styledcomponents&logoColor=fff&style=for-the-badge) ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=for-the-badge) ![TypeScript Badge](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=for-the-badge) ![Next.js Badge](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=for-the-badge)
  ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=for-the-badge) ![React Hook Form Badge](https://img.shields.io/badge/React%20Hook%20Form-EC5990?logo=reacthookform&logoColor=fff&style=for-the-badge) ![React Table Badge](https://img.shields.io/badge/React%20Table-FF4154?logo=reacttable&logoColor=fff&style=for-the-badge) ![React Query Badge](https://img.shields.io/badge/React%20Query-FF4154?logo=reactquery&logoColor=fff&style=for-the-badge) ![Supabase Badge](https://img.shields.io/badge/Supabase-3ECF8E?logo=supabase&logoColor=fff&style=for-the-badge) ![PostgreSQL Badge](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff&style=for-the-badge) ![Postman Badge](https://img.shields.io/badge/Postman-FF6C37?logo=postman&logoColor=fff&style=for-the-badge) ![Vercel Badge](https://img.shields.io/badge/Vercel-000?logo=vercel&logoColor=fff&style=for-the-badge) ![Node.js Badge](https://img.shields.io/badge/Node.js-393?logo=nodedotjs&logoColor=fff&style=for-the-badge) ![Yarn Badge](https://img.shields.io/badge/Yarn-2C8EBB?logo=yarn&logoColor=fff&style=for-the-badge)
 
  This [refine](https://github.com/pankod/refine) project was generated with [superplate](https://github.com/pankod/refine).
  
+ ### 🧠 What I learned
+ 
+ - How Refine works and how to use it to quickly build CRUD based apps
+ - New languages & frameworks: Nextjs and Typescript
+ - New design systems: Material UI and Ant Design
+ - New database and auth manager: Supabase
+ - How to set up the app's infrastructure to work correctly with the frontend
+ - A lot of database design and mapping out ERDs
+ - How to map out an MVP and get a clear scope before starting to build
 
-## 👤 Hackathon & Participant Info
+
+# 👤 Hackathon & Participant Info
 
 <div align="center" style="margin: 30px;">
     <a href="https://refine.dev">
@@ -35,7 +45,7 @@ Creating MealMind has been the most important project for me. I wanted to build 
     </a>
 </div>
 
-### **refine Open Source Hackathon:**
+## **refine Open Source Hackathon:**
 
 *refine is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools and storefronts.*
 
@@ -54,27 +64,77 @@ Creating MealMind has been the most important project for me. I wanted to build 
 
 ## 👀 Preview
 
-Add foods to track
+Sign in or create a new account to start using MealMind:
 
-<img width="1672" alt="CleanShot 2023-02-24 at 02 53 53@2x" src="https://user-images.githubusercontent.com/5871075/221124789-3c2aa672-a20d-4c89-b6b6-56d328339877.png">
+<img width="50%" alt="MealMind sign in page" src="https://user-images.githubusercontent.com/5871075/221377768-691ee94c-943f-47b8-b5f7-990ca0935e3e.png">
 
-Switch to dark mode
 
-![CleanShot 2023-02-24 at 02 39 08@2x](https://user-images.githubusercontent.com/5871075/221124839-cf5e4d34-4d93-4f94-82df-b6550d1eb5e9.png)
+DARK MODE: Sign in or create a new account to start using MealMind:
 
-View all categories and associated food items
+<img width="50%" alt="MealMind dark mode sign in page" src="https://user-images.githubusercontent.com/5871075/221377826-e2c6abb0-aa3c-4445-a8e6-0a2ee91662c8.png">
 
-![CleanShot 2023-02-24 at 02 39 40@2x](https://user-images.githubusercontent.com/5871075/221124883-2881b51c-3d89-4300-b86a-ae332689edee.png)
 
-Start a meal plan for today
+See a list of all your foods and quickly see what you've rated them:
 
-<img width="1671" alt="CleanShot 2023-02-24 at 02 54 05@2x" src="https://user-images.githubusercontent.com/5871075/221124909-c37156b6-97ab-46b9-ab39-172c73960b59.png">
+<img width="50%" alt="MealMind list of food items page" src="https://user-images.githubusercontent.com/5871075/221377845-a70bb5ab-ed81-4565-8cd6-a3f962f04d76.png">
 
-Add meals for breakfast, lunch, and dinner
 
-![CleanShot 2023-02-24 at 02 39 31@2x](https://user-images.githubusercontent.com/5871075/221124941-2a04ec5b-a31f-4c84-a9aa-147b221e3214.png)
+DARK MODE: See a list of all your foods and quickly see what you've rated them:
 
-Coming soon...
+<img width="50%" alt="MealMind dark mode list of food items page" src="https://user-images.githubusercontent.com/5871075/221377832-1761f8d8-d078-4cb5-a19b-15335fb21967.png">
+
+
+Filter through all your food items with categories:
+
+<img width="50%" alt="MealMind filter food items" src="https://user-images.githubusercontent.com/5871075/221377855-9f1d0faf-7e65-42e7-bfd5-7e6a71b0e198.png">
+
+
+Create new food items with categories, eating & purchase locations, and notes:
+
+<img width="50%" alt="MealMind adding new food items" src="https://user-images.githubusercontent.com/5871075/221377861-746ad473-2776-4dfc-8235-cb5cfa634c73.png">
+
+
+Add new food items directly from the categories menu:
+
+<img width="50%" alt="MealMind categories page with adding new food items" src="https://user-images.githubusercontent.com/5871075/221377867-8fe3ead8-5d03-4910-bf13-a2b60fb924d9.png">
+
+
+DARK MODE: Add new food items directly from the categories menu:
+
+<img width="50%" alt="MealMind dark mode categories page with adding new food items" src="https://user-images.githubusercontent.com/5871075/221377869-e3dbe004-4cb9-4b48-b618-2174c723ab8b.png">
+
+
+See all your foods organized into category buckets:
+
+<img width="50%" alt="MealMind food items in category buckets" src="https://user-images.githubusercontent.com/5871075/221377878-f26a048d-a92a-403f-9659-8083e02c1ef5.png">
+
+
+See a list of all your meal plans and date:
+
+<img width="50%" alt="MealMind list of meal plans page" src="https://user-images.githubusercontent.com/5871075/221377885-9c64232d-d702-4aa7-8be1-ba881762208e.png">
+
+
+DARK MODE: See a list of all your meal plans and dates:
+
+<img width="50%" alt="MealMind dark mode list of meal plans page" src="https://user-images.githubusercontent.com/5871075/221377890-a8f4b00a-9d70-424f-b438-ba1cb1f4bc6c.png">
+
+
+Create a new meal plan for any day:
+
+<img width="50%" alt="MealMind create a new meal plan" src="https://user-images.githubusercontent.com/5871075/221377896-8bbd8b5a-7788-479f-8f18-fe07601b2e83.png">
+
+
+Click into your meal plan to see more information and plan meals for breakfast, lunch, and dinner:
+
+<img width="50%" alt="MealMind meal plan info page" src="https://user-images.githubusercontent.com/5871075/221377901-796b81be-5e26-46b4-b842-cea5b2bbbfe8.png">
+
+
+DARK MODE: Click into your meal plan to see more information and plan meals for breakfast, lunch, and dinner:
+
+<img width="50%" alt="MealMind dark mode meal plan info page" src="https://user-images.githubusercontent.com/5871075/221377906-d091492f-110d-462f-9b2f-419c4664a24b.png">
+
+
+**Coming soon...**
 
 * Search bar (and kbar) to quickly find food items or meal plans
 * Spanish translations
@@ -185,7 +245,7 @@ RLS POLICIES
 Disabled
 
 
-FOODS
+**FOODS**
 
 * id int8 is identity and primary key
 * created_at timestampz default now()
