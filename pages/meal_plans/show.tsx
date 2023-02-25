@@ -135,16 +135,26 @@ export const PeriodGrid: React.FC<AddPeriod> = ({ periodNum }) => {
                             return <Avatar
                                 alt={`${foodList[0]?.food_name}`}
                                 src={`${foodList[0]?.food_image}`}
-                                sx={{ width: 74, height: 74 }}
+                                sx={{ 
+                                    width: 74, 
+                                    height: 74, 
+                                    border: "4px solid #000000", 
+                                    boxShadow: "4px 4px 0px solid #000000" 
+                                }}
                             />;
                         }
                     }
                     return <Avatar 
-                        sx={{ width: 74, height: 74 }}
+                        sx={{ 
+                            width: 74, 
+                            height: 74, 
+                            border: "4px solid #000000", 
+                            boxShadow: "4px 4px 0px solid #000000" 
+                        }}
                     />
                 },
                 flex: 1,
-                minWidth: 80,
+                minWidth: 100,
             },
             {
                 field: "food_name",
@@ -168,8 +178,8 @@ export const PeriodGrid: React.FC<AddPeriod> = ({ periodNum }) => {
             {...dataGridProps}
             columns={columns}
             autoHeight
-            rowHeight={80}
-            rowsPerPageOptions={[4, 10, 20, 100]}
+            rowHeight={100}
+            rowsPerPageOptions={[5, 10, 20, 100]}
             // components={{
             //     NoRowsOverlay: CustomNoRowsOverlay,
             // }}
@@ -202,6 +212,9 @@ const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
     return (
         <Show
             title={<Typography variant="h5">{`Meals for ${currMealPlan?.data.date}`}</Typography>}
+            cardProps={{ 
+                elevation: 0
+            }}
             headerButtons={({ defaultButtons }) => (
                 <>
                     {defaultButtons}
@@ -209,6 +222,18 @@ const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
                         variant="contained"
                         startIcon={<AddOutlined />}
                         onClick={ () => showCreateDrawer()}
+                        sx={{ 
+                            backgroundColor: "info.main",
+                            color: "#000000",
+                            border: "4px solid #000000",
+                            boxShadow: "4px 4px 0px #000000",
+                            transition: "box-shadow 0.5s, background-color 0.5s",
+                            "&:hover": {
+                                backgroundColor: "neoPastel.blue",
+                                boxShadow: "none",
+
+                            },
+                        }}
                     >Add A Meal</Button>
                 </>
             )}
@@ -240,10 +265,16 @@ const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
                     </Paper>
                 </Grid> */}
                 <Grid item xs={12} lg={4}>
-                    <Stack direction="column" spacing={2}>
+                    <Stack direction="column" spacing={3}>
                         <List
                             cardHeaderProps={{ title: "Morning" }}
                             breadcrumb={false}
+                            cardProps={{ 
+                                sx: { 
+                                    border: "4px solid #000000",
+                                    boxShadow: "4px 4px 0px #000000"
+                                } 
+                            }}
                         >
                             <PeriodGrid periodNum={1} />
                         </List>
@@ -254,6 +285,12 @@ const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
                         <List
                             cardHeaderProps={{ title: "Afternoon" }}
                             breadcrumb={false}
+                            cardProps={{ 
+                                sx: { 
+                                    border: "4px solid #000000",
+                                    boxShadow: "4px 4px 0px #000000"
+                                } 
+                            }}
                         >
                             <PeriodGrid periodNum={2} />
                         </List>
@@ -264,6 +301,12 @@ const MealPlanShow: React.FC<IResourceComponentsProps> = () => {
                         <List
                             cardHeaderProps={{ title: "Evening" }}
                             breadcrumb={false}
+                            cardProps={{ 
+                                sx: { 
+                                    border: "4px solid #000000",
+                                    boxShadow: "4px 4px 0px #000000"
+                                } 
+                            }}
                         >
                             <PeriodGrid periodNum={3} />
                         </List>

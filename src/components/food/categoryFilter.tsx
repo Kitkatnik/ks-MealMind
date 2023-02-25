@@ -69,9 +69,35 @@ export const CategoryFilter: React.FC<FoodItemProps> = ({
                         }
                         size="small"
                         loading={isLoading}
-                        sx={{
-                            borderRadius: "50px",
-                        }}
+                        sx={
+                            filterCategories.length === 0
+                                ? {
+                                    borderRadius: "50px",
+                                    border: "2px solid",
+                                    borderColor: "primary.main",
+                                    boxShadow: "2px 2px 0px #5864fd",
+                                    backgroundColor: "#000000",
+                                    color: "#E4E6EB",
+                                    margin: "4px",
+                                    transition: "box-shadow 0.5s, border 0.5s",
+                                    '&:hover': {
+                                        boxShadow: "none",
+                                        border: "2px solid #000000"
+                                    }}
+                                : {
+                                    borderRadius: "50px",
+                                    border: "2px solid ",
+                                    boxShadow: "2px 2px 0px",
+                                    margin: "4px",
+                                    backgroundColor: "darkMode.primary",
+                                    color: "darkMode.white",
+                                    transition: "box-shadow 0.5s, background-color 0.5s, color 0.5s",
+                                    '&:hover': {
+                                        boxShadow: "none",
+                                        backgroundColor: "primary.main",
+                                        color: "#ffffff"
+                                    }}
+                        }
                     >
                         {"All"}
                     </LoadingButton>
@@ -88,9 +114,39 @@ export const CategoryFilter: React.FC<FoodItemProps> = ({
                             }
                             size="small"
                             loading={isLoading}
-                            sx={{
-                                borderRadius: "50px",
-                            }}
+                            sx={
+                                filterCategories.includes(
+                                    category.id.toString(),
+                                )
+                                ? {
+                                    borderRadius: "50px",
+                                    border: "2px solid",
+                                    borderColor: "primary.main",
+                                    boxShadow: "2px 2px 0px #5864fd",
+                                    backgroundColor: "#000000",
+                                    color: "#E4E6EB",
+                                    margin: "4px",
+                                    transition: "box-shadow 0.5s, border 0.5s",
+                                    '&:hover': {
+                                        boxShadow: "none",
+                                        border: "2px solid #000000"
+                                    }
+                                }
+                                : {
+                                    borderRadius: "50px",
+                                    border: "2px solid ",
+                                    boxShadow: "2px 2px 0px",
+                                    margin: "4px",
+                                    backgroundColor: "darkMode.primary",
+                                    color: "darkMode.white",
+                                    transition: "box-shadow 0.5s, background-color 0.5s, color 0.5s",
+                                    '&:hover': {
+                                        boxShadow: "none",
+                                        backgroundColor: "primary.main",
+                                        color: "#ffffff"
+                                    }
+                                }
+                            }
                             onClick={() =>
                                 toggleFilterCategory(category.id.toString())
                             }

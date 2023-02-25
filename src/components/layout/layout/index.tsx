@@ -24,6 +24,7 @@ export const Layout: React.FC<LayoutProps> = ({
           flexDirection: "column",
           flex: 1,
           minHeight: "100vh",
+          // borderLeft: "4px solid #000000" // PUTS BORDER ON SIDER
         }}
       >
         <HeaderToRender />

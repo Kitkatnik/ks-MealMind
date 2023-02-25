@@ -318,7 +318,19 @@ const CategoryFoodsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 </Typography>
                 <CreateButton
                     onClick={() => showCreateDrawer()}
-                    sx={{ margin: "10px", zIndex: 5 }}
+                    sx={{ 
+                        margin: "10px", 
+                        zIndex: 5,
+                        backgroundColor: "highlight.main",
+                        color: "#000000",
+                        border: "4px solid #000000",
+                        boxShadow: "4px 4px 0px #000000",
+                        transition: "box-shadow 0.5s, background-color 0.5s",
+                        "&:hover" : {
+                            backgroundColor: "neoPastel.yellow",
+                            boxShadow: "none"
+                        }
+                    }}
                 >
                     Add Food Item
                 </CreateButton>

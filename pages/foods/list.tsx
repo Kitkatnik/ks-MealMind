@@ -58,10 +58,12 @@ const FoodList: React.FC<IResourceComponentsProps> = () => {
                     paddingX: { xs: 3, md: 2 },
                     paddingY: { xs: 2, md: 3 },
                     my: 0.5,
+                    boxShadow: "none",
                 }}
+                elevation={0}
             >
-                <Grid container columns={16}>
-                    <Grid item xs={16} md={12}>
+                <Grid container columns={16} >
+                    <Grid item xs={16} md={12} >
                         <Stack
                             display="flex"
                             justifyContent="space-between"
@@ -70,14 +72,26 @@ const FoodList: React.FC<IResourceComponentsProps> = () => {
                             padding={1}
                             direction="row"
                             gap={2}
+                            marginBottom={2}
                         >
-                            <Typography variant="h5">
-                                Food List
+                            <Typography variant="h4">
+                                <strong>Food List</strong>
                             </Typography>
                             <CreateButton
                                 onClick={() => showCreateDrawer()}
                                 variant="outlined"
-                                sx={{ marginBottom: "5px" }}
+                                sx={{ 
+                                    border: "4px solid #000000",
+                                    boxShadow: "4px 4px 0px #000000",
+                                    backgroundColor: "neoBright.red",
+                                    color: "#000000",
+                                    transition: "box-shadow 0.5s, background-color 0.5s",
+                                    '&:hover': {
+                                        border: "4px solid #000000",
+                                        boxShadow: "none",
+                                        backgroundColor: "neoPastel.red",
+                                    }
+                                }}
                             >
                                 Add Food Item
                             </CreateButton>
@@ -106,15 +120,15 @@ const FoodList: React.FC<IResourceComponentsProps> = () => {
                                     justifyContent="center"
                                     padding={3}
                                 >
-                                    <Typography variant="body2">
-                                        No Food Items
+                                    <Typography variant="body1">
+                                        <strong>No Food Items</strong>
                                     </Typography>
                                 </Grid>
                             )}
                         </Grid>
                         <Pagination
                             count={pageCount}
-                            variant="outlined"
+                            // variant="outlined"
                             color="primary"
                             shape="rounded"
                             sx={{
@@ -144,7 +158,7 @@ const FoodList: React.FC<IResourceComponentsProps> = () => {
                     >
                         <Stack padding="8px">
                             <Typography variant="subtitle1">
-                                Use categories to filter your search
+                                <strong>Use categories to filter your search</strong>
                             </Typography>
                             <CategoryFilter
                                 setFilters={setFilters}

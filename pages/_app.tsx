@@ -28,6 +28,7 @@ import FoodList from "./foods/list";
 import MealPlanList from "./meal_plans/list";
 import MealPlanShow from "./meal_plans/show";
 import CategoryList from "./categories/list";
+import StyleGuide from "./style-guide";
 
 import { ColorModeContextProvider } from "@contexts";
 

@@ -7,6 +7,7 @@ import React, {
 import { ThemeProvider, useMediaQuery } from "@pankod/refine-mui";
 import { DarkTheme, LightTheme } from "@pankod/refine-mui";
 import { parseCookies, setCookie } from "nookies";
+import { overridedLightTheme, overridedDarkTheme } from "./styles"
 
 type ColorModeContextType = {
   mode: string;
@@ -49,7 +50,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
         mode,
       }}
     >
-      <ThemeProvider theme={mode === "light" ? LightTheme : DarkTheme}>
+      <ThemeProvider theme={mode === "light" ? overridedLightTheme : overridedDarkTheme}>
         {children}
       </ThemeProvider>
     </ColorModeContext.Provider>

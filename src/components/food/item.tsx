@@ -63,6 +63,8 @@ export const FoodItem: React.FC<FoodItem> = ({ food, show }) => {
 				flexDirection: "column",
 				position: "relative",
 				height: "100%",
+				border: "4px solid #000000",
+				// "&:hover": { backgroundColor: "#E1E1E1"}
 			}}
 		>
 			<CardHeader
@@ -85,6 +87,7 @@ export const FoodItem: React.FC<FoodItem> = ({ food, show }) => {
 								vertical: "bottom",
 								horizontal: "left",
 							}}
+							elevation={0}
 						>
 							<Button
 								onClick={() => {
@@ -93,8 +96,19 @@ export const FoodItem: React.FC<FoodItem> = ({ food, show }) => {
 								}}
 								size="small"
 								startIcon={<Edit />}
+								// elevation={0}
 								sx={{
 									padding: "5px 10px",
+									backgroundColor: "#ff5052",
+									color: "#000000",
+									border: "3px solid #000000",
+									boxShadow: "none",
+									transition: "box-shadow 0.5s, background-color 0.5s",
+									'&:hover': {
+                                        border: "3px solid #000000",
+                                        boxShadow: "none",
+                                        backgroundColor: "neoPastel.red",
+                                    }
 								}}
 							>
 								{"Edit"}
@@ -113,9 +127,11 @@ export const FoodItem: React.FC<FoodItem> = ({ food, show }) => {
 				<CardMedia
 					component="img"
 					sx={{
-						width: { xs: 60, sm: 84, lg: 108, xl: 144 },
-						height: { xs: 60, sm: 84, lg: 108, xl: 144 },
+						width: { xs: 84, sm: 108, lg: 108, xl: 144 },
+						height: { xs: 84, sm: 108, lg: 108, xl: 144 },
 						borderRadius: "50%",
+						border: "4px solid #000000",
+						boxShadow: "4px 4px 0px #000000",
 					}}
 					alt={food_name}
 					image={food_image}
@@ -127,6 +143,9 @@ export const FoodItem: React.FC<FoodItem> = ({ food, show }) => {
 					display: "flex",
 					flexDirection: "column",
 					flex: 1,
+					justifyContent: "center",
+					alignContent: "center",
+					textAlign: "center",
 				}}
 			>
 				<Divider />
@@ -149,6 +168,7 @@ export const FoodItem: React.FC<FoodItem> = ({ food, show }) => {
 					// getLabelText={(value: number) => customIcons[value].label}
 					highlightSelectedOnly
 					readOnly
+					sx={{ marginTop: "10px", justifyContent: "center"}}
 				/>
 			</CardContent>
 		</Card>

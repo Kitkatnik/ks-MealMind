@@ -94,7 +94,7 @@ export const Header: React.FC = () => {
 	}, [value]);
 
 	return shouldRenderHeader ? (
-		<AppBar color="default" position="sticky" elevation={1}>
+		<AppBar color="default" position="sticky" elevation={0} sx={{ borderBottom: '4px solid', borderColor: '#000000'}}>
 			<Toolbar>
 				<Stack
 					direction="row"
@@ -196,8 +196,8 @@ export const Header: React.FC = () => {
 							alignItems="center"
 							justifyContent="center"
 						>
-							<Typography variant="subtitle2">{user?.name}</Typography>
-							<Avatar src={user?.avatar} alt={user?.name} />
+							<Typography variant="subtitle2" sx={{ marginLeft: "10px"}}>{user?.name}</Typography>
+							<Avatar src={user?.avatar} alt={user?.name} sx={{ marginLeft: "10px"}} />
 						</Stack>
 					</Stack>
 				</Stack>

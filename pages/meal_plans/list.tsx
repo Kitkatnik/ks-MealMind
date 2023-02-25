@@ -110,10 +110,20 @@ const MealPlanList: React.FC<IResourceComponentsProps> = () => {
                     paddingX: { xs: 3, md: 2 },
                     paddingY: { xs: 2, md: 3 },
                     my: 0.5,
+                    boxShadow: "none",
                 }}
+                elevation={0}
             >
                 <List 
-                    cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }} 
+                    cardProps={{ 
+                        sx: { 
+                            paddingX: { xs: 2, md: 0 }, 
+                            backgroundColor: "transparent", 
+                            border: "none",
+                            boxShadow: "none",
+                        },
+                        elevation: 0,
+                    }} 
                     // canCreate={true} 
                     // createButtonProps={  }
                     headerButtons={({ defaultButtons }) => (
@@ -123,6 +133,17 @@ const MealPlanList: React.FC<IResourceComponentsProps> = () => {
                                 variant="contained"
                                 startIcon={<AddOutlined />}
                                 onClick={ () => showCreateDrawer()}
+                                sx={{
+                                    border: "4px solid #000000",
+                                    boxShadow: "4px 4px 0px #000000",
+                                    backgroundColor: "#00D876",
+                                    color: "#000000",
+                                    transition: "box-shadow 0.5s, background-color 0.5s",
+                                    "&:hover": {
+                                        boxShadow: "none",
+                                        backgroundColor: "neoPastel.green",
+                                    }
+                                }}
                             >Create A Meal Plan</Button>
                         </>
                     )}
@@ -134,9 +155,17 @@ const MealPlanList: React.FC<IResourceComponentsProps> = () => {
                         rowsPerPageOptions={[10, 20, 50, 100]}
                         density="comfortable"
                         sx={{
+                            border: "4px solid #000000",
+                            boxShadow: "4px 4px 0px #000000",
                             "& .MuiDataGrid-cell:hover": {
                                 cursor: "pointer",
                             },
+                            "& .MuiDataGrid-row:hover": {
+                                backgroundColor: "#00BE64"
+                            },
+                            "& .MuiDataGrid-columnHeader": {
+                                fontWeight: "bold",
+                            }
                         }}
                         onRowClick={(row) => {
                             show("meal_plans", row.id);
