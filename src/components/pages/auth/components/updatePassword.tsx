@@ -54,7 +54,13 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 
   const Content = (
     <Card {...(contentProps ?? {})}>
-      <CardContent sx={{ paddingX: "32px" }}>
+      <CardContent sx={{ 
+          paddingX: "32px", 
+          backgroundColor: "darkMode.sidebar", 
+          border: "4px solid #000000",
+          boxShadow: "4px 4px 0px #000000",
+          color: "darkMode.white"
+        }}>
         <Typography
           component="h1"
           variant="h5"
@@ -128,6 +134,13 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             variant="contained"
             sx={{
               mt: "8px",
+              mb: "8px",
+              border: "2px solid #000000",
+              boxShadow: "4px 4px 0px #000000",
+              transition: "box-shadow 0.5s, background-color 0.5s",
+              "&:hover": {
+                boxShadow: "none"
+              }
             }}
             disabled={isLoading}
           >

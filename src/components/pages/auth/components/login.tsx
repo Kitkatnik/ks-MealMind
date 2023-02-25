@@ -199,6 +199,10 @@ export const LoginPage: React.FC<LoginProps> = ({
               mb: "8px",
               border: "2px solid #000000",
               boxShadow: "4px 4px 0px #000000",
+              transition: "box-shadow 0.5s, background-color 0.5s",
+              "&:hover": {
+                boxShadow: "none"
+              }
             }}
             disabled={isLoading}
           >
