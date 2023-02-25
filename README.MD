@@ -6,7 +6,9 @@
  
  [Click Here to Demo](https://www.mealmind.app)
 
-You can tour this app's repo using [CodeSee](https://app.codesee.io/maps/public/5db76fa0-b54f-11ed-a159-e35b74d3b925)
+You can tour this app's repo using [CodeSee](https://app.codesee.io/maps/public/5db76fa0-b54f-11ed-a159-e35b74d3b925).
+
+See the [Refine Hackathon submission here](https://devpost.com/software/food-tracking-app).
 
 </div>
 
