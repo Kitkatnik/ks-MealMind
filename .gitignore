@@ -7,3 +7,10 @@ node_modules
 .env.*
 .env*.local
 !.env.example
+
+# Sentry
+.sentryclirc
+sentry.*
+
+# Sentry
+next.config.original.js
