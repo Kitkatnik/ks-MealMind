@@ -10,6 +10,8 @@ You can tour this app's repo using [CodeSee](https://app.codesee.io/maps/public/
 
 See the [Refine Hackathon submission here](https://devpost.com/software/food-tracking-app).
 
+Checkout our [Roadmap](https://mealmind.hellonext.co/roadmap)
+
 </div>
 
 
@@ -184,6 +186,7 @@ DARK MODE: Click into your meal plan to see more information and plan meals for 
 * Importing and exporting food items and meal plans
 * Set goals on eating more often, more variety, etc
 
+[You can check out our up-to-date roadmap here](https://mealmind.hellonext.co/roadmap).
 
 
 
