@@ -10,7 +10,7 @@ You can tour this app's repo using [CodeSee](https://app.codesee.io/maps/public/
 
 See the [Refine Hackathon submission here](https://devpost.com/software/food-tracking-app).
 
-Checkout our [Roadmap](https://mealmind.hellonext.co/roadmap)
+Checkout our [Roadmap](https://mealmind.hellonext.co/roadmap) and [Changelog](https://mealmind.hellonext.co/changelog)
 
 </div>
 
