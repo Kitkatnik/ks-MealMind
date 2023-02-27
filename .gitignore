@@ -10,7 +10,6 @@ node_modules
 
 # Sentry
 .sentryclirc
-sentry.*
 
 # Sentry
 next.config.original.js
