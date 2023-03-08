@@ -70,6 +70,14 @@ Creating MealMind has been the most important project for me. I wanted to build 
 
 [GitHub](https://github.com/Kitkatnik) | [LinkedIn](https://www.linkedin.com/in/katyasarmiento/) | [Twitter](https://twitter.com/kitkatnik) *(not active)*
 
+## **HACKATHON RESULT**
+
+**ANNOUNCEMENT:** https://refine.dev/blog/refine-hackathon-winners/
+
+**WON:** Most Visually Pleasing
+
+
+![blog_2023-02-28-hackathon-january-winners_Group 768](https://user-images.githubusercontent.com/5871075/223589739-c22f1430-9535-4aff-8921-cc183d3990e3.png)
 
 
 # 👀 Preview
