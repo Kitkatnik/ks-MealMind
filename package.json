@@ -24,7 +24,7 @@
     "@pankod/refine-supabase": "^4.1.0",
     "@sentry/nextjs": "^7.38.0",
     "dayjs": "^1.11.7",
-    "next": "^13.0.6",
+    "next": "^13.5.4",
     "next-compose-plugins": "^2.2.1",
     "nookies": "^2.5.2",
     "react": "^18.2.0",
